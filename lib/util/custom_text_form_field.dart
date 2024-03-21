@@ -2,7 +2,6 @@ import 'package:coursestudy/util/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
 class CustomTextFormField extends StatelessWidget {
   final String? hintText;
   final TextEditingController? controller;
@@ -27,8 +26,8 @@ class CustomTextFormField extends StatelessWidget {
     this.prefixIcon,
     this.sufixIcon,
     this.fillColor,
-    this.readOnly = false, 
-    this.maxLines, 
+    this.readOnly = false,
+    this.maxLines,
     this.keyBoardType,
     this.maxLength = 500,
   });
@@ -36,7 +35,7 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      cursorColor: Colors.black38,
+      cursorColor: secondaryColor,
       obscureText: obscure,
       style: lightTheme(context).textTheme.labelLarge,
       keyboardType: keyboardType,
@@ -49,18 +48,19 @@ class CustomTextFormField extends StatelessWidget {
         alignLabelWithHint: true,
         filled: true,
         //fillColor: fillColor,
-        fillColor: const Color(0xFFD9D9D9),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
+        fillColor: primaryColor,
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 10.0, vertical: 0),
         hintText: hintText,
-        hintStyle: lightTheme(context).textTheme.labelMedium,
+        hintStyle: lightTheme(context)
+            .textTheme
+            .labelMedium!
+            .copyWith(color: secondaryColor),
 
         enabled: true,
-
-        
       ),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: validator,
     );
   }
 }
-
