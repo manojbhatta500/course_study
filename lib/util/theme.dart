@@ -2,7 +2,6 @@ import 'package:coursestudy/util/size.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 const primaryColor = Color(0xff2696F1);
 const Color secondaryColor = Color(0xffFFFFFF);
 const Color textFormColor = Color(0xFFD9D9D9);
@@ -43,7 +42,7 @@ ThemeData lightTheme(BuildContext context) {
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
           width: SizeConfig.screenHeight! * 0.01,
-          color: const Color(0xFFD9D9D9),
+          color: const Color(0xff2696F1),
           //color: primaryColor,
         ),
         borderRadius: BorderRadius.circular(
@@ -53,7 +52,7 @@ ThemeData lightTheme(BuildContext context) {
       focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
             width: SizeConfig.screenHeight! * 0.01,
-            color: textFormColor,
+            color: primaryColor,
             //color: Theme.of(context).disabledColor,
           ),
           borderRadius: BorderRadius.circular(
