@@ -18,9 +18,9 @@ ThemeData lightTheme(BuildContext context) {
         color: primaryColor,
       ),
     ),
-    buttonTheme: const ButtonThemeData(
-      buttonColor: primaryColor,
-    ),
+    // buttonTheme: const ButtonThemeData(
+    //   buttonColor: primaryColor,
+    // ),
     cardColor: secondaryColor,
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: primaryColor,

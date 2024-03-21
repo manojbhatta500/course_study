@@ -1,4 +1,4 @@
-import 'package:coursestudy/feature/user/user_screen/user_details.dart';
+import 'package:coursestudy/feature/user/pages/user_screen/user_details.dart';
 import 'package:coursestudy/util/custom_text_form_field.dart';
 import 'package:coursestudy/util/theme.dart';
 import 'package:flutter/material.dart';

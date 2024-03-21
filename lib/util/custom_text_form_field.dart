@@ -47,7 +47,6 @@ class CustomTextFormField extends StatelessWidget {
         suffix: sufixIcon,
         alignLabelWithHint: true,
         filled: true,
-        //fillColor: fillColor,
         fillColor: primaryColor,
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 10.0, vertical: 0),
@@ -56,7 +55,6 @@ class CustomTextFormField extends StatelessWidget {
             .textTheme
             .labelMedium!
             .copyWith(color: secondaryColor),
-
         enabled: true,
       ),
       autovalidateMode: AutovalidateMode.onUserInteraction,

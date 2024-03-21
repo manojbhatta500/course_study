@@ -16,6 +16,17 @@ class AdminLoginScreen extends StatelessWidget {
           'Admin',
           style: TextStyle(color: secondaryColor),
         ),
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.close,
+                color: Colors.white,
+              ))
+        ],
         centerTitle: true,
         backgroundColor: primaryColor,
       ),
