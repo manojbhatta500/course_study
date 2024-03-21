@@ -14,6 +14,9 @@ class _UserDetailsState extends State<UserDetails> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    bool desktopScreen = MediaQuery.of(context).size.width > 600;
+    bool mobileScreen = MediaQuery.of(context).size.width > 600;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(MyStrings.appName),
@@ -31,30 +34,35 @@ class _UserDetailsState extends State<UserDetails> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Card(
+              margin: EdgeInsetsDirectional.symmetric(
+                  horizontal: desktopScreen ? width * 0.3 : width * 0.1,
+                  vertical: desktopScreen ? height * 0.2 : height * 0.1),
               color: secondaryColor,
               child: Padding(
-                
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Row(
-                      children: [
-                        Text(
-                          "Name: ",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(color: primaryColor),
-                        ),
-                        Text(
-                          "Siddharth Singh ",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(color: primaryColor),
-                        ),
-                      ],
+                    Center(
+                      child: Row(
+                        children: [
+                          Text(
+                            "Name: ",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge!
+                                .copyWith(color: primaryColor),
+                          ),
+                          Text(
+                            "Siddharth Singh ",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge!
+                                .copyWith(color: primaryColor),
+                          ),
+                        ],
+                      ),
                     ),
                     Row(
                       children: [
