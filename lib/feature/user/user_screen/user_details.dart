@@ -28,102 +28,108 @@ class _UserDetailsState extends State<UserDetails> {
           colors: [Color(0xff2696f1), Color(0x5b2696f1)],
         )),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Card(
               color: secondaryColor,
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        "Name: ",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge!
-                            .copyWith(color: primaryColor),
-                      ),
-                      Text(
-                        "Siddharth Singh ",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge!
-                            .copyWith(color: primaryColor),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        "Date of Birth ",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge!
-                            .copyWith(color: primaryColor),
-                      ),
-                      Text(
-                        "2024 ",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge!
-                            .copyWith(color: primaryColor),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        "Course Enroll ",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge!
-                            .copyWith(color: primaryColor),
-                      ),
-                      Text(
-                        "Flutter",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge!
-                            .copyWith(color: primaryColor),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        "Start Date",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge!
-                            .copyWith(color: primaryColor),
-                      ),
-                      Text(
-                        "2024 ",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge!
-                            .copyWith(color: primaryColor),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        "Complete Date ",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge!
-                            .copyWith(color: primaryColor),
-                      ),
-                      Text(
-                        "2024 ",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge!
-                            .copyWith(color: primaryColor),
-                      ),
-                    ],
-                  ),
-                ],
+              child: Padding(
+                
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          "Name: ",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(color: primaryColor),
+                        ),
+                        Text(
+                          "Siddharth Singh ",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(color: primaryColor),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "Date of Birth: ",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(color: primaryColor),
+                        ),
+                        Text(
+                          "2024 ",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(color: primaryColor),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "Course Enroll: ",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(color: primaryColor),
+                        ),
+                        Text(
+                          "Flutter",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(color: primaryColor),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "Start Date: ",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(color: primaryColor),
+                        ),
+                        Text(
+                          "2024 ",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(color: primaryColor),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "Complete Date ",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(color: primaryColor),
+                        ),
+                        Text(
+                          "2024 ",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(color: primaryColor),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
