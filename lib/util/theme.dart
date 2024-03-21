@@ -1,5 +1,6 @@
 import 'package:coursestudy/util/size.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 const primaryColor = Color(0xff2696F1);
@@ -7,17 +8,24 @@ const Color secondaryColor = Color(0xffFFFFFF);
 const Color textFormColor = Color(0xFFD9D9D9);
 const Color errorColor = Color(0xffff0000);
 
-ThemeData lightTheme(BuildContext, context) {
+ThemeData lightTheme(BuildContext context) {
   return ThemeData(
     primaryColor: primaryColor,
     appBarTheme: const AppBarTheme(
       backgroundColor: secondaryColor,
       centerTitle: true,
-     // titleTextStyle: Theme.of(context).textTheme.titleMedium!.copyWith(color: primaryColor,),
       foregroundColor: primaryColor,
       actionsIconTheme: IconThemeData(
         color: primaryColor,
       ),
+    ),
+    buttonTheme: const ButtonThemeData(
+      buttonColor: primaryColor,
+    ),
+    cardColor: secondaryColor,
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: primaryColor,
+      iconSize: SizeConfig.screenHeight,
     ),
     textTheme: TextTheme(
       displayMedium: GoogleFonts.poppins(
@@ -36,7 +44,7 @@ ThemeData lightTheme(BuildContext, context) {
         borderSide: BorderSide(
           width: SizeConfig.screenHeight! * 0.01,
           color: const Color(0xFFD9D9D9),
-        
+          //color: primaryColor,
         ),
         borderRadius: BorderRadius.circular(
           SizeConfig.screenHeight! * 0.01,
@@ -46,7 +54,7 @@ ThemeData lightTheme(BuildContext, context) {
           borderSide: BorderSide(
             width: SizeConfig.screenHeight! * 0.01,
             color: textFormColor,
-       
+            //color: Theme.of(context).disabledColor,
           ),
           borderRadius: BorderRadius.circular(
             SizeConfig.screenHeight! * 0.01,
@@ -62,8 +70,4 @@ ThemeData lightTheme(BuildContext, context) {
       ),
     ),
   );
-}
-
-class GoogleFonts {
-  static poppins({TextStyle? textStyle}) {}
 }

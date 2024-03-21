@@ -15,8 +15,8 @@ class _UserScreenState extends State<UserScreen> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: const Text(MyStrings.appName),
-      ),
+          //title: const Text(MyStrings.appName),
+          ),
       body: Container(
         height: height,
         width: width,

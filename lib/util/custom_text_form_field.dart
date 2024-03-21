@@ -38,7 +38,7 @@ class CustomTextFormField extends StatelessWidget {
     return TextFormField(
       cursorColor: Colors.black38,
       obscureText: obscure,
-      style: lightTheme(BuildContext, context).textTheme.labelLarge,
+      style: lightTheme(context).textTheme.labelLarge,
       keyboardType: keyboardType,
       controller: controller,
       readOnly: readOnly!,
@@ -52,7 +52,7 @@ class CustomTextFormField extends StatelessWidget {
         fillColor: const Color(0xFFD9D9D9),
         contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
         hintText: hintText,
-        hintStyle: lightTheme(BuildContext, context).textTheme.labelMedium,
+        hintStyle: lightTheme(context).textTheme.labelMedium,
 
         enabled: true,
 
