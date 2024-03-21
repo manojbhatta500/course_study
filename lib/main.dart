@@ -1,3 +1,4 @@
+import 'package:coursestudy/feature/admin/ui/admin_login.dart';
 import 'package:coursestudy/util/size.dart';
 import 'package:coursestudy/util/theme.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     SizeConfig().init(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const UserScreen(),
+      home: UserScreen(),
       theme: lightTheme(context),
     );
   }
