@@ -1,6 +1,9 @@
+import 'package:coursestudy/util/theme.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+import 'feature/user/user_screen/user_screen.dart';
+
+Future<void> main() async {
   runApp(const MyApp());
 }
 
@@ -9,6 +12,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const UserScreen(),
+      theme: lightTheme(BuildContext, context),
+    );
   }
 }
+
