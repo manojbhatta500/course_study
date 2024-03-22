@@ -1,3 +1,4 @@
+import 'package:coursestudy/feature/admin/admin_home_page/bloc/admin_home_page_bloc.dart';
 import 'package:coursestudy/feature/admin/ui/admin_login.dart';
 import 'package:coursestudy/feature/user/bloc/user_bloc.dart';
 import 'package:coursestudy/util/size.dart';
@@ -17,11 +18,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return BlocProvider(
-      create: (context) => UserBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => UserBloc(),
+        ),
+        BlocProvider(
+          create: (context) => AdminHomePageBloc(),
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: UserScreen(),
+        home: const UserScreen(),
         theme: lightTheme(context),
       ),
     );
