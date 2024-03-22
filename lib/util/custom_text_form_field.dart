@@ -9,7 +9,7 @@ class CustomTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final bool obscure;
   final Widget? prefixIcon;
-  final IconButton? sufixIcon;
+  final Widget? sufixIcon;
   final Color? fillColor;
   final bool? readOnly;
   final int? maxLines;

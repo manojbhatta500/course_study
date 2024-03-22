@@ -2,6 +2,7 @@ import 'package:coursestudy/feature/admin/Auth/admin_login.dart';
 import 'package:coursestudy/util/my_strings.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../util/custom_date_picker.dart';
 import '../../../../util/custom_text_form_field.dart';
 import '../../../../util/theme.dart';
 import '../../student_details/student_details.dart';
@@ -20,6 +21,7 @@ class _PostFormState extends State<PostForm> {
   final TextEditingController _studentNameController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _dateController = TextEditingController();
+
   //late DateTime selectedDate;
 
   @override
@@ -91,6 +93,11 @@ class _PostFormState extends State<PostForm> {
                           hintText: "Date Of Birth",
                           fillColor: primaryColor,
                           keyBoardType: TextInputType.text,
+                          sufixIcon: CustomDatePicker(
+                            onDateSelected: (DateTime dataTime) {
+                              _dateController.text = dataTime.toString();
+                            },
+                          ),
                         ),
                         const SizedBox(
                           height: 20,

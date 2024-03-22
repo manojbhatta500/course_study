@@ -46,16 +46,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
           border: Border.all(color: Colors.grey),
           borderRadius: BorderRadius.circular(5.0),
         ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text(
-              "${_selectedDate!.toLocal()}".split(' ')[0],
-              style: TextStyle(fontSize: 16.0),
-            ),
-            Icon(Icons.calendar_today),
-          ],
-        ),
+        child: const Icon(Icons.calendar_today),
       ),
     );
   }
