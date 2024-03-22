@@ -1,7 +1,9 @@
 import 'package:coursestudy/feature/admin/ui/admin_login.dart';
+import 'package:coursestudy/feature/user/bloc/user_bloc.dart';
 import 'package:coursestudy/util/size.dart';
 import 'package:coursestudy/util/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'feature/user/user_screen/user_screen.dart';
 
@@ -15,10 +17,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: UserScreen(),
-      theme: lightTheme(context),
+    return BlocProvider(
+      create: (context) => UserBloc(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: UserScreen(),
+        theme: lightTheme(context),
+      ),
     );
   }
 }

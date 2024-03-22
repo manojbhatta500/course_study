@@ -1,9 +1,12 @@
+import 'package:coursestudy/feature/user/model/user_model.dart';
 import 'package:coursestudy/util/my_strings.dart';
 import 'package:coursestudy/util/theme.dart';
 import 'package:flutter/material.dart';
 
 class UserDetails extends StatefulWidget {
-  const UserDetails({super.key});
+  final UserModel? userModel;
+  final String? id;
+  const UserDetails({super.key, this.userModel, this.id});
 
   @override
   State<UserDetails> createState() => _UserDetailsState();
@@ -55,7 +58,7 @@ class _UserDetailsState extends State<UserDetails> {
                                 .copyWith(color: primaryColor),
                           ),
                           Text(
-                            "Siddharth Singh ",
+                            widget.userModel!.name!,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyLarge!
@@ -74,7 +77,7 @@ class _UserDetailsState extends State<UserDetails> {
                               .copyWith(color: primaryColor),
                         ),
                         Text(
-                          "2024 ",
+                          widget.userModel!.dOB!,
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge!
@@ -103,14 +106,14 @@ class _UserDetailsState extends State<UserDetails> {
                     Row(
                       children: [
                         Text(
-                          "Start Date: ",
+                          "Joined Date: ",
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge!
                               .copyWith(color: primaryColor),
                         ),
                         Text(
-                          "2024 ",
+                          widget.userModel!.joinedDate!,
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge!
@@ -121,14 +124,14 @@ class _UserDetailsState extends State<UserDetails> {
                     Row(
                       children: [
                         Text(
-                          "Complete Date ",
+                          "Completed Date ",
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge!
                               .copyWith(color: primaryColor),
                         ),
                         Text(
-                          "2024 ",
+                          widget.userModel!.completedDate!,
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge!
