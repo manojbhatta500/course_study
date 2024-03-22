@@ -1,1 +1,3 @@
-class UserRepository{}
+class UserRepository{
+  
+}
