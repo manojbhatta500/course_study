@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../../../util/custom_button.dart';
 import '../../../util/custom_text_form_field.dart';
+import '../../admin/Auth/admin_login.dart';
 
 class UserScreen extends StatefulWidget {
   const UserScreen({super.key});
@@ -19,10 +20,23 @@ class _UserScreenState extends State<UserScreen> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    bool isdesktop = MediaQuery.of(context).size.width > 600;
     return Scaffold(
       appBar: AppBar(
         title: const Text(MyStrings.appName),
       ),
+      floatingActionButton: isdesktop
+          ? FloatingActionButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const AdminLogin()));
+              },
+              child: const Icon(
+                Icons.admin_panel_settings,
+                color: Colors.white,
+              ),
+            )
+          : null,
       body: Container(
         height: height,
         width: width,
