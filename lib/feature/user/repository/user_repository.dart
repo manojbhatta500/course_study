@@ -9,15 +9,15 @@ class UserRepository {
   UserModel userModel = UserModel();
 
   Future<dynamic> userPost(String id) async {
-    final response = await http.post(
-      Uri.parse("192.168.1.81:3000/api/v1/student/$id"),
+    final response = await http.get(
+      Uri.parse("http://192.168.1.81:3000/api/v1/student/$id"),
       // Uri.parse(
       //     "http://192.168.1.81:3000/api/v1/student/3249509b409f4da9a4d647812f0e5878"),
     );
     try {
       log(response.statusCode.toString());
-      if (response.statusCode == 201) {
-        final data = UserModel.fromJson(jsonDecode(response as String));
+      if (response.statusCode == 200) {
+        final data = UserModel.fromJson(jsonDecode(response.body));
 
         //final data = jsonDecode(response.body);
 
