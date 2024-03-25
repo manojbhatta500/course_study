@@ -53,7 +53,7 @@ class _UserScreenLoginState extends State<UserScreenLogin> {
               CustomTextFormField(
                 controller: _idController,
                 hintText: "Search...",
-                prefixIcon: Icon(
+                prefixIcon: const Icon(
                   Icons.search,
                   color: secondaryColor,
                 ),
@@ -66,11 +66,11 @@ class _UserScreenLoginState extends State<UserScreenLogin> {
               BlocListener<UserBloc, UserState>(
                 listener: (context, state) {
                   if (state is LoadingUserState) {
-                    Center(
+                    const Center(
                       child: CircularProgressIndicator(),
                     );
                   } else if (state is ErrorUserState) {
-                    Text("error found ");
+                    const Text("error found ");
                   } else if (state is SuccessUserState) {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => UserDetails(
@@ -99,7 +99,7 @@ class _UserScreenLoginState extends State<UserScreenLogin> {
                     style: Theme.of(context)
                         .textTheme
                         .bodyLarge!
-                        .copyWith(color: Colors.white),
+                        .copyWith(color: thirdColor),
                   ),
                 ),
               ),

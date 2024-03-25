@@ -22,6 +22,7 @@ class _AdminSignupState extends State<AdminSignup> {
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _nameController.dispose();
 
     super.dispose();
   }
@@ -39,12 +40,7 @@ class _AdminSignupState extends State<AdminSignup> {
       body: Container(
         height: height,
         width: width,
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Color(0xff2696f1), Color(0x5b2696f1)],
-        )),
+        color: primaryColor,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -93,13 +89,26 @@ class _AdminSignupState extends State<AdminSignup> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            const Text("You have already an account? "),
+                            Text(
+                              "You have already an account? ",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(color: primaryColor),
+                            ),
                             TextButton(
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => AdminLogin()));
+                                      builder: (context) =>
+                                          const AdminLogin()));
                                 },
-                                child: const Text("Login")),
+                                child: Text(
+                                  "Login",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .copyWith(color: Colors.green),
+                                )),
                           ],
                         ),
                         const SizedBox(
@@ -120,7 +129,7 @@ class _AdminSignupState extends State<AdminSignup> {
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyLarge!
-                                .copyWith(color: Colors.white),
+                                .copyWith(color: secondaryColor),
                           ),
                         ),
                       ],

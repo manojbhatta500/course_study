@@ -3,10 +3,14 @@ import 'package:coursestudy/feature/admin/Auth/admin_signup.dart';
 import 'package:coursestudy/feature/admin/admin_home_page/bloc/admin_home_page_bloc.dart';
 import 'package:coursestudy/feature/admin/admin_home_page/screen/nav_button.dart';
 import 'package:coursestudy/feature/admin/post_form/screens/post_form.dart';
+import 'package:coursestudy/util/theme.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../add_course/screen/add_course.dart';
+import '../../course_list_screen/course_list_screen.dart';
 
 class AdminHomePage extends StatelessWidget {
   const AdminHomePage({super.key});
@@ -17,7 +21,7 @@ class AdminHomePage extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.yellow,
+        backgroundColor: secondaryColor,
         title: const Text('Homepage'),
         actions: [
           IconButton(onPressed: () {}, icon: const Icon(Icons.abc_outlined)),
@@ -35,12 +39,12 @@ class AdminHomePage extends StatelessWidget {
               height: height,
               width: 0.2 * width,
               decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.8),
+                  color: secondaryColor,
                   border: Border.all(color: Colors.white, width: 1)),
               child: Column(
                 children: [
                   NavButton(
-                    title: 'Homepage',
+                    title: 'Add Course',
                     icondata: Icons.home,
                     onpressed: () {
                       BlocProvider.of<AdminHomePageBloc>(context)
@@ -48,7 +52,7 @@ class AdminHomePage extends StatelessWidget {
                     },
                   ),
                   NavButton(
-                    title: 'Homepage',
+                    title: 'Course List',
                     icondata: Icons.home,
                     onpressed: () {
                       BlocProvider.of<AdminHomePageBloc>(context)
@@ -56,7 +60,7 @@ class AdminHomePage extends StatelessWidget {
                     },
                   ),
                   NavButton(
-                    title: 'Homepage',
+                    title: 'Add Student',
                     icondata: Icons.home,
                     onpressed: () {
                       BlocProvider.of<AdminHomePageBloc>(context)
@@ -64,7 +68,7 @@ class AdminHomePage extends StatelessWidget {
                     },
                   ),
                   NavButton(
-                    title: 'Homepage',
+                    title: 'Student List',
                     icondata: Icons.home,
                     onpressed: () {
                       BlocProvider.of<AdminHomePageBloc>(context)
@@ -79,10 +83,10 @@ class AdminHomePage extends StatelessWidget {
                 builder: (context, state) {
                   switch (state.runtimeType) {
                     case Page1:
-                      return const AdminLogin();
+                      return const AddCourse();
 
                     case Page2:
-                      return const AdminSignup();
+                      return TableWithHeadings();
 
                     case Page3:
                       return const PostForm();
