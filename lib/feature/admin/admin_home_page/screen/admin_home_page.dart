@@ -10,7 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../add_course/screen/add_course.dart';
-import '../../course_list_screen/course_list_screen.dart';
+import '../../add_student_screen/ui/add_student_screen.dart';
+import '../../course_list_screen/ui/screen/course_list_screen.dart';
+import '../../student_list/ui/student_list_screen.dart';
 
 class AdminHomePage extends StatelessWidget {
   const AdminHomePage({super.key});
@@ -86,13 +88,13 @@ class AdminHomePage extends StatelessWidget {
                       return const AddCourse();
 
                     case Page2:
-                      return TableWithHeadings();
+                      return const TableWithHeadings();
 
                     case Page3:
-                      return const PostForm();
+                      return const AddStudentScreen();
 
                     case Page4:
-                      return const AdminLogin();
+                      return const StudentListScreen();
 
                     default:
                       print('this is invalid');
