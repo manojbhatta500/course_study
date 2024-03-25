@@ -17,6 +17,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     SizeConfig().init(context);
     return MultiBlocProvider(
       providers: [
@@ -27,10 +29,16 @@ class MyApp extends StatelessWidget {
           create: (context) => AdminHomePageBloc(),
         ),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: const UserScreen(),
-        theme: lightTheme(context),
+      child: Container(
+        constraints: BoxConstraints(
+          minWidth: width * 0.8,
+          maxWidth: double.infinity,
+        ),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: const UserScreen(),
+          theme: lightTheme(context),
+        ),
       ),
     );
   }
