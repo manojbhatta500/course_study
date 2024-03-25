@@ -17,21 +17,37 @@ class TableWithHeadings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 100, left: 30, right: 30),
-      child: ListView(
-        children: [
-          Text(
-            "Course List",
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge!
-                .copyWith(color: secondaryColor, fontSize: 32),
-          ),
-          _createDataTable()
-        ],
+    return SingleChildScrollView(
+      child: PaginatedDataTable(
+        
+        header: Text(
+          'Course List',
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge!
+              .copyWith(color: secondaryColor, fontSize: 32),
+        ),
+        columns: _createColumns(),
+        source: StudyCourseDataSou(),
+        rowsPerPage: 10,
       ),
     );
+
+    // Padding(
+    //   padding: const EdgeInsets.only(top: 100, left: 30, right: 30),
+    //   child: ListView(
+    //     children: [
+    //       Text(
+    //         "Course List",
+    // style: Theme.of(context)
+    //     .textTheme
+    //     .bodyLarge!
+    //     .copyWith(color: secondaryColor, fontSize: 32),
+    //       ),
+    //       _createDataTable()
+    //     ],
+    //   ),
+    // );
   }
 }
 
@@ -111,4 +127,55 @@ List<DataRow> _createRows() {
             // DataCell(Text(e.isDelete.toString())),
           ]))
       .toList();
+}
+
+class StudyCourseDataSou extends DataTableSource {
+  @override
+  DataRow? getRow(int index) {
+    if (index >= userList.length) {
+      return null;
+    }
+    final userData = userList[index];
+    return DataRow.byIndex(
+      index: index,
+      cells: [
+        DataCell(Text(userData.id.toString())),
+        DataCell(Text(userData.name)),
+        DataCell(Row(
+          children: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.update,
+                color: Colors.green,
+                size: 25,
+              ),
+            ),
+            const SizedBox(
+              width: 5,
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.delete,
+                color: Colors.red,
+                size: 25,
+              ),
+            ),
+          ],
+        )),
+      ],
+    );
+  }
+
+  @override
+  // TODO: implement isRowCountApproximate
+  bool get isRowCountApproximate => false;
+
+  @override
+  // TODO: implement rowCount
+  int get rowCount => userList.length;
+  @override
+  // TODO: implement selectedRowCount
+  int get selectedRowCount => 0;
 }
