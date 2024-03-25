@@ -3,10 +3,12 @@ import 'package:coursestudy/feature/admin/Auth/admin_signup.dart';
 import 'package:coursestudy/feature/admin/admin_home_page/bloc/admin_home_page_bloc.dart';
 import 'package:coursestudy/feature/admin/admin_home_page/screen/nav_button.dart';
 import 'package:coursestudy/feature/admin/post_form/screens/post_form.dart';
+import 'package:coursestudy/util/my_strings.dart';
 import 'package:coursestudy/util/theme.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../add_course/screen/add_course.dart';
@@ -24,7 +26,7 @@ class AdminHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: secondaryColor,
-        title: const Text('Homepage'),
+        title: const Text(MyStrings.appName),
         actions: [
           IconButton(onPressed: () {}, icon: const Icon(Icons.abc_outlined)),
           IconButton(onPressed: () {}, icon: const Icon(Icons.abc_outlined)),
@@ -39,7 +41,7 @@ class AdminHomePage extends StatelessWidget {
           children: [
             Container(
               height: height,
-              width: 0.2 * width,
+              width: 0.15 * width,
               decoration: BoxDecoration(
                   color: secondaryColor,
                   border: Border.all(color: Colors.white, width: 1)),

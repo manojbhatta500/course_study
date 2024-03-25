@@ -42,14 +42,19 @@ class StudentListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: PaginatedDataTable(
-        header: const Text('Tasks'),
+        arrowHeadColor: secondaryColor,
+        header: Text(
+          'Student List',
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge!
+              .copyWith(color: secondaryColor, fontSize: 32),
+        ),
         columns: _createColumns(),
         source: StudyCourseDataSou(),
         rowsPerPage: 10,
       ),
     );
-
-    
   }
 }
 
@@ -86,8 +91,6 @@ DataTable _createDataTable() {
       columns: _createColumns(),
       rows: _createRows());
 }
-
-
 
 List<DataColumn> _createColumns() {
   return [

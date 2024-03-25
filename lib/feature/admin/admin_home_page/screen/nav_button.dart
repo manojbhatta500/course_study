@@ -1,3 +1,4 @@
+import 'package:coursestudy/util/theme.dart';
 import 'package:flutter/material.dart';
 
 class NavButton extends StatefulWidget {
@@ -23,7 +24,8 @@ class _NavButtonState extends State<NavButton> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: widget.onpressed,
-      splashColor: Colors.yellow, // Define splash color here
+      hoverColor: secondaryColor,
+      splashColor: secondaryColor, // Define splash color here
       child: MouseRegion(
         onEnter: (event) {
           setState(() {
@@ -36,16 +38,14 @@ class _NavButtonState extends State<NavButton> {
           });
         },
         child: Container(
+          // padding: const EdgeInsets.all(5),
           width: double.infinity,
-          margin: const EdgeInsets.symmetric(vertical: 5),
-          decoration: BoxDecoration(
-            color:
-                isHovered ? const Color(0xffF5A331) : const Color(0xff868690),
-            borderRadius: const BorderRadius.only(
-              topRight: Radius.circular(30),
-              bottomRight: Radius.circular(30),
-            ),
-          ),
+          margin: const EdgeInsets.only(bottom: 5, left: 5, right: 5),
+          color: isHovered ? secondaryColor : primaryColor,
+
+          // decoration: BoxDecoration(
+          //   color: isHovered ? secondaryColor : primaryColor,
+          // ),
           height: 50,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -53,11 +53,14 @@ class _NavButtonState extends State<NavButton> {
               Icon(
                 widget.icondata,
                 size: 20,
-                color: Colors.white,
+                //color: secondaryColor,
+                color: isHovered ? primaryColor : secondaryColor,
               ),
               Text(
                 widget.title,
-                style: const TextStyle(color: Colors.white, fontSize: 20),
+                style: TextStyle(
+                    color: isHovered ? primaryColor : secondaryColor,
+                    fontSize: 20),
               ),
             ],
           ),
