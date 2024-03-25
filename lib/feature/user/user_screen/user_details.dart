@@ -27,12 +27,7 @@ class _UserDetailsState extends State<UserDetails> {
       body: Container(
         height: height,
         width: width,
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Color(0xff2696f1), Color(0x5b2696f1)],
-        )),
+        color: primaryColor,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

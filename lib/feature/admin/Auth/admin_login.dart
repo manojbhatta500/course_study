@@ -40,12 +40,7 @@ class _AdminLoginState extends State<AdminLogin> {
       body: Container(
         height: height,
         width: width,
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Color(0xff2696f1), Color(0x5b2696f1)],
-        )),
+        color: primaryColor,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -85,14 +80,26 @@ class _AdminLoginState extends State<AdminLogin> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            const Text("You haven't an account? "),
+                            Text(
+                              "You haven't an account? ",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(color: primaryColor),
+                            ),
                             TextButton(
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (context) =>
                                           const AdminSignup()));
                                 },
-                                child: const Text("Sign Up")),
+                                child: Text(
+                                  "Sign Up",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .copyWith(color: Colors.green),
+                                )),
                           ],
                         ),
                         const SizedBox(
@@ -119,7 +126,7 @@ class _AdminLoginState extends State<AdminLogin> {
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyLarge!
-                                .copyWith(color: Colors.white),
+                                .copyWith(color: secondaryColor),
                           ),
                         ),
                       ],

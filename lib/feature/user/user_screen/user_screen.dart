@@ -27,25 +27,21 @@ class _UserScreenState extends State<UserScreen> {
       ),
       floatingActionButton: isdesktop
           ? FloatingActionButton(
+              backgroundColor: secondaryColor,
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => const AdminLogin()));
               },
               child: const Icon(
-                Icons.admin_panel_settings,
-                color: Colors.white,
+                Icons.admin_panel_settings_outlined,
+                color: primaryColor,
               ),
             )
           : null,
       body: Container(
         height: height,
         width: width,
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Color(0xff2696f1), Color(0x5b2696f1)],
-        )),
+        color: primaryColor,
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
