@@ -3,5 +3,8 @@ class Apis {
   static String getCourseListApi = "$baseApi/course";
   static String getStudentApi = "$baseApi/student";
 
+
   static String postCourseApi = '$baseApi/course';
+
+
 }

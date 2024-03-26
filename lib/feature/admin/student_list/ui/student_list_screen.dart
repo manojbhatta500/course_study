@@ -10,36 +10,6 @@ import '../bloc/student_list.bloc.dart';
 import '../bloc/student_list_state.dart';
 import '../model/student_list_model.dart';
 
-final List<UserData> userList = [
-  UserData(
-      id: 1,
-      isDelete: true,
-      isUpdate: true,
-      name: "Flutter",
-      courseName: 'Flutter',
-      startedDate: '2024-08-09',
-      completedDate: '2025-08-08',
-      dateOfBirth: '2000-09-09'),
-  UserData(
-      id: 2,
-      isDelete: false,
-      isUpdate: true,
-      name: "Dart",
-      courseName: 'Flutter',
-      startedDate: '2024-08-09',
-      completedDate: '2025-08-08',
-      dateOfBirth: '2000-09-09'),
-  UserData(
-      id: 3,
-      isDelete: true,
-      isUpdate: false,
-      name: "React",
-      courseName: 'Flutter',
-      startedDate: '2024-08-09',
-      completedDate: '2025-08-08',
-      dateOfBirth: '2000-09-09')
-];
-
 class StudentListScreen extends StatefulWidget {
   const StudentListScreen({super.key});
 
@@ -79,47 +49,12 @@ class _StudentListScreenState extends State<StudentListScreen> {
               rowsPerPage: 10,
             );
           } else {
-            return Text("erro");
+            return Text("error");
           }
         },
       ),
     );
   }
-}
-
-class UserData {
-  final int id;
-  final String name;
-  final String courseName;
-  final String dateOfBirth;
-  final String startedDate;
-  final String completedDate;
-  final bool isDelete;
-  final bool isUpdate;
-
-  UserData(
-      {required this.id,
-      required this.isDelete,
-      required this.isUpdate,
-      required this.name,
-      required this.completedDate,
-      required this.courseName,
-      required this.dateOfBirth,
-      required this.startedDate});
-}
-
-DataTable _createDataTable() {
-  return DataTable(
-      columnSpacing: BouncingScrollSimulation.maxSpringTransferVelocity * 0.02,
-      headingTextStyle: const TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
-      ),
-      dataTextStyle: const TextStyle(
-        fontSize: 16,
-      ),
-      columns: _createColumns(),
-      rows: _createRows());
 }
 
 List<DataColumn> _createColumns() {
@@ -134,42 +69,6 @@ List<DataColumn> _createColumns() {
     const DataColumn(label: Text('Options')),
     // const DataColumn(label: Text('delete'))
   ];
-}
-
-List<DataRow> _createRows() {
-  return userList
-      .map((e) => DataRow(cells: [
-            DataCell(Text(e.id.toString())),
-            DataCell(Text(e.name)),
-            DataCell(Text(e.courseName)),
-            DataCell(Text(e.dateOfBirth)),
-            DataCell(Text(e.startedDate)),
-            DataCell(Text(e.completedDate)),
-            DataCell(Row(
-              children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.update,
-                    color: Colors.green,
-                    size: 25,
-                  ),
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.delete,
-                    color: Colors.red,
-                    size: 25,
-                  ),
-                ),
-              ],
-            )),
-          ]))
-      .toList();
 }
 
 class StudyCourseDataSou extends DataTableSource {
@@ -225,7 +124,7 @@ class StudyCourseDataSou extends DataTableSource {
 
   @override
   // TODO: implement rowCount
-  int get rowCount => userList.length;
+  int get rowCount => studentListModel!.length;
 
   @override
   // TODO: implement selectedRowCount
