@@ -4,14 +4,14 @@ import 'dart:developer';
 import 'package:coursestudy/feature/admin/student_list/model/student_list_model.dart';
 import 'package:http/http.dart' as http;
 
+import '../../../../util/apis.dart';
+
 class StudentListRepository {
   StudentListModel studentListModel = StudentListModel();
 
   Future<List<StudentListModel>> studentList() async {
-    final response =
-        await http.get(Uri.parse("http://192.168.1.81:3000/api/v1/student"));
+    final response = await http.get(Uri.parse(Apis.getStudentApi));
     log(response.toString());
-
     try {
       if (response.statusCode == 200) {
         final List data = jsonDecode(response.body);

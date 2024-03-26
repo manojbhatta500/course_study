@@ -8,18 +8,19 @@ import 'package:coursestudy/feature/admin/student_list/repository/student_list_r
 
 class StudentListBloc extends Bloc<StudentListEvent, StudentListState> {
   StudentListRepository studentListRepository = StudentListRepository();
+
   StudentListBloc() : super(InitialStudentListState()) {
     on<FetchStudentListEvent>((event, emit) async {
       emit(LoadingStudentListState());
       List<StudentListModel> checkData =
           await studentListRepository.studentList();
 
-      if (checkData.isNotEmpty) {
+      if (checkData.runtimeType == List<StudentListModel>) {
         log("this is bloc error state");
-        emit(ErrorStudentListState());
+        emit(SuccessStudentListState(checkData));
       } else {
         log("this is bloc success");
-        emit(SuccessStudentListState(checkData));
+        emit(ErrorStudentListState());
       }
     });
   }

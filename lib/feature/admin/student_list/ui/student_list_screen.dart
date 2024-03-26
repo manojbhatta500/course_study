@@ -74,11 +74,12 @@ class _StudentListScreenState extends State<StudentListScreen> {
                     .copyWith(color: secondaryColor, fontSize: 32),
               ),
               columns: _createColumns(),
-              source: StudyCourseDataSou(),
+              source:
+                  StudyCourseDataSou(studentListModel: state.studentListModel),
               rowsPerPage: 10,
             );
           } else {
-            return Container();
+            return Text("erro");
           }
         },
       ),
@@ -95,6 +96,7 @@ class UserData {
   final String completedDate;
   final bool isDelete;
   final bool isUpdate;
+
   UserData(
       {required this.id,
       required this.isDelete,
@@ -224,6 +226,7 @@ class StudyCourseDataSou extends DataTableSource {
   @override
   // TODO: implement rowCount
   int get rowCount => userList.length;
+
   @override
   // TODO: implement selectedRowCount
   int get selectedRowCount => 0;

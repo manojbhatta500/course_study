@@ -1,6 +1,9 @@
+import 'package:coursestudy/feature/admin/course_list_screen/course_list_bloc/course_list_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../util/theme.dart';
+import '../../model/course_model.dart';
 import '../widget/table_widget.dart';
 
 final List<UserData> userList = [
@@ -17,39 +20,53 @@ class TableWithHeadings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<CourseListBloc>().add(FetchCourseListEvent());
     return SingleChildScrollView(
-      child: PaginatedDataTable(
-        
-        header: Text(
-          'Course List',
-          style: Theme.of(context)
-              .textTheme
-              .bodyLarge!
-              .copyWith(color: secondaryColor, fontSize: 32),
-        ),
-        columns: _createColumns(),
-        source: StudyCourseDataSou(),
-        rowsPerPage: 10,
+      child: BlocBuilder<CourseListBloc, CourseListState>(
+        builder: (context, state) {
+          switch (state) {
+            case CourseListLoadingState():
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            case CourseListFailedState():
+              return Center(
+                child: Text("Error"),
+              );
+            case CourseListSuccessState():
+              return PaginatedDataTable(
+                header: Text(
+                  'Course List',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .copyWith(color: secondaryColor, fontSize: 32),
+                ),
+                columns: _createColumns(),
+                source: StudyCourseDataSource(state.courseList),
+                rowsPerPage: 10,
+              );
+            default:
+              return Text('Hello');
+          }
+        },
       ),
     );
-
-    // Padding(
-    //   padding: const EdgeInsets.only(top: 100, left: 30, right: 30),
-    //   child: ListView(
-    //     children: [
-    //       Text(
-    //         "Course List",
-    // style: Theme.of(context)
-    //     .textTheme
-    //     .bodyLarge!
-    //     .copyWith(color: secondaryColor, fontSize: 32),
-    //       ),
-    //       _createDataTable()
-    //     ],
-    //   ),
-    // );
   }
 }
+
+/*PaginatedDataTable(
+header: Text(
+'Course List',
+style: Theme.of(context)
+    .textTheme
+    .bodyLarge!
+    .copyWith(color: secondaryColor, fontSize: 32),
+),
+columns: _createColumns(),
+source: StudyCourseDataSource(state.),
+rowsPerPage: 10,
+);*/
 
 class UserData {
   final int id;
@@ -57,6 +74,7 @@ class UserData {
   final String des;
   final bool isDelete;
   final bool isUpdate;
+
   UserData(
       {required this.des,
       required this.id,
@@ -129,18 +147,22 @@ List<DataRow> _createRows() {
       .toList();
 }
 
-class StudyCourseDataSou extends DataTableSource {
+class StudyCourseDataSource extends DataTableSource {
+  List<CourseModel>? courseModel;
+
+  StudyCourseDataSource(this.courseModel);
+
   @override
   DataRow? getRow(int index) {
-    if (index >= userList.length) {
+    if (index >= courseModel!.length) {
       return null;
     }
-    final userData = userList[index];
+    final userData = courseModel![index];
     return DataRow.byIndex(
       index: index,
       cells: [
         DataCell(Text(userData.id.toString())),
-        DataCell(Text(userData.name)),
+        DataCell(Text(userData.name!)),
         DataCell(Row(
           children: [
             IconButton(
@@ -175,6 +197,7 @@ class StudyCourseDataSou extends DataTableSource {
   @override
   // TODO: implement rowCount
   int get rowCount => userList.length;
+
   @override
   // TODO: implement selectedRowCount
   int get selectedRowCount => 0;
