@@ -4,11 +4,13 @@ import 'package:coursestudy/feature/admin/add_student_screen/bloc/add_student_ev
 import 'package:coursestudy/util/custom_date_picker.dart';
 import 'package:coursestudy/util/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../util/custom_text_form_field.dart';
-import '../../Auth/admin_signup.dart';
+
+import '../../course_list_screen/course_list_bloc/course_list_bloc.dart';
+import '../../course_list_screen/model/course_model.dart';
 import '../bloc/add_student_bloc.dart';
 import '../bloc/add_student_state.dart';
 
@@ -40,6 +42,15 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
     _completedDateController.dispose();
 
     super.dispose();
+  }
+
+  CourseModel? _courseModel;
+  String? courseId;
+
+  @override
+  void initState() {
+    context.read<CourseListBloc>().add(FetchCourseListEvent());
+    super.initState();
   }
 
   @override
@@ -78,31 +89,65 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
               height: 20,
             ),
 // ******************************************************
-            // DropdownButton<String>(
+            BlocBuilder<CourseListBloc, CourseListState>(
+              builder: (context, state) {
+                if (state is CourseListLoadingState) {
+                  return const Text("Loading...");
+                } else if (state is CourseListFailedState) {
+                  return const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "   First Create Course",
+                    ),
+                  );
+                } else if (state is CourseListSuccessState) {
+                  return DropdownButtonFormField<CourseModel>(
+                    hint: const Text(
+                      'Choose Course',
+                      style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black),
+                    ),
+                    //value: null,
+                    value: _courseModel,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                    onChanged: (newValue) {
+                      setState(() {
+                        _courseModel = newValue!;
+                        courseId = _courseModel!.id;
 
-            //   value: _selectedItem,
-            //   onChanged: (String? newValue) {
-            //     setState(() {
-            //       _selectedItem = newValue!;
-            //     });
-            //   },
-            //   items: <String>['Flutter', 'Firebase', 'React ', 'Node js']
-            //       .map<DropdownMenuItem<String>>((String value) {
-            //     return DropdownMenuItem<String>(
-            //       value: value,
-            //       child: Text(value),
-            //     );
-            //   }).toList(),
-            // ),
+                        // state.submeterlist[0] = newValue!;
+                        //dropdownValue = newValue!;
+                      });
+                      // BlocProvider.of<SubMeterBloc>(context)
+                      //     .add(FetchSubMeterEvent());
+                    },
+                    items: state.courseList.map((value) {
+                      return DropdownMenuItem<CourseModel>(
+                        value: value,
+                        child: Text(
+                          // value.toString(),
+                          value.name!,
+                          //_subMeterModel!.name!,
+                          style: const TextStyle(
+                              fontSize: 13, fontWeight: FontWeight.w400),
+                        ),
+                      );
+                    }).toList(),
+                  );
+                } else {
+                  return Container();
+                }
+              },
+            ),
 
             // **************************************************************************
 
-            CustomTextFormField(
-              controller: _courseController,
-              hintText: "Course dropdown",
-              fillColor: primaryColor,
-              keyBoardType: TextInputType.text,
-            ),
             const SizedBox(
               height: 20,
             ),
@@ -163,7 +208,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                     log('loading state');
                   case SuccessAddStudentState:
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text('snack'),
+                      content: Text('successfully Added Student'),
                       duration: Duration(seconds: 2),
                     ));
                 }
@@ -172,13 +217,23 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                 alignment: Alignment.centerRight,
                 child: ElevatedButton(
                   onPressed: () {
+                    String dob = DateTime.parse(_dateOfBirthController.text)
+                        .toIso8601String();
+                    log("${dob}date and time");
                     context.read<AddStudentBloc>().add(FetchAddStudentEvent(
-                          _courseController.text,
-                          _completedDateController.text,
-                          _dateOfBirthController.text,
-                          _StartedDateController.text,
+                          courseId!,
+                          DateTime.parse(_dateOfBirthController.text)
+                              .toIso8601String(),
+                          DateTime.parse(_completedDateController.text)
+                              .toIso8601String(),
+                          DateTime.parse(_StartedDateController.text)
+                              .toIso8601String(),
                           _nameController.text,
                         ));
+                    _dateOfBirthController.clear();
+                    _nameController.clear();
+                    _StartedDateController.clear();
+                    _completedDateController.clear();
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: secondaryColor,
