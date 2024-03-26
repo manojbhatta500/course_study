@@ -158,7 +158,8 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
               keyBoardType: TextInputType.text,
               sufixIcon: CustomDatePicker(
                 onDateSelected: (value) {
-                  _dateOfBirthController.text = value.toString();
+                  _dateOfBirthController.text =
+                      "${value.year.toString()}-${value.month.toString().padLeft(2, '0')}-${value.day.toString().padLeft(2, '0')}";
                 },
               ),
             ),
@@ -172,7 +173,8 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
               keyBoardType: TextInputType.text,
               sufixIcon: CustomDatePicker(
                 onDateSelected: (value) {
-                  _StartedDateController.text = value.toString();
+                  _StartedDateController.text =
+                      "${value.year.toString()}-${value.month.toString().padLeft(2, '0')}-${value.day.toString().padLeft(2, '0')}";
                 },
               ),
             ),
@@ -186,7 +188,8 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
               keyBoardType: TextInputType.text,
               sufixIcon: CustomDatePicker(
                 onDateSelected: (value) {
-                  _completedDateController.text = value.toString();
+                  _completedDateController.text =
+                      "${value.year.toString()}-${value.month.toString().padLeft(2, '0')}-${value.day.toString().padLeft(2, '0')}";
                 },
               ),
             ),
@@ -219,7 +222,6 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                   onPressed: () {
                     String dob = DateTime.parse(_dateOfBirthController.text)
                         .toIso8601String();
-                    log("${dob}date and time");
                     context.read<AddStudentBloc>().add(FetchAddStudentEvent(
                           courseId!,
                           DateTime.parse(_dateOfBirthController.text)
