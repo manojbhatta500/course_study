@@ -1,6 +1,10 @@
+import 'dart:developer';
+
+import 'package:coursestudy/feature/admin/add_course/bloc/course_add_bloc.dart';
 import 'package:coursestudy/util/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../util/custom_text_form_field.dart';
 import '../../Auth/admin_signup.dart';
@@ -72,30 +76,49 @@ class _AddCourseState extends State<AddCourse> {
             const SizedBox(
               height: 20,
             ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: ElevatedButton(
-                onPressed: () {
-                  // Navigator.of(context).pushAndRemoveUntil(
-                  //     MaterialPageRoute(
-                  //         builder: (context) =>
-                  //             const AdminHomePage()),
-                  //     (route) => false);
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: secondaryColor,
-                  minimumSize:
-                      Size(MediaQuery.of(context).size.width * 0.07, 44),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4),
+            BlocListener<CourseAddBloc, CourseAddState>(
+              listener: (context, state) {
+                switch (state.runtimeType) {
+                  case AddCourseSuccess:
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        backgroundColor: Colors.green,
+                        content: Text('successfully added')));
+                    _courseController.clear();
+                    _descriptionController.clear();
+
+                  case AddCourseFailed:
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        backgroundColor: Colors.red,
+                        content: Text('something is wrong')));
+
+                  default:
+                    log('this is deault statement in bloc listener');
+                }
+              },
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: ElevatedButton(
+                  onPressed: () {
+                    BlocProvider.of<CourseAddBloc>(context).add(
+                        UserAddCourseEvent(
+                            courseName: _courseController.text,
+                            courseDisc: _descriptionController.text));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: secondaryColor,
+                    minimumSize:
+                        Size(MediaQuery.of(context).size.width * 0.07, 44),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
                   ),
-                ),
-                child: Text(
-                  "Submit",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyLarge!
-                      .copyWith(color: primaryColor),
+                  child: Text(
+                    "Submit",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyLarge!
+                        .copyWith(color: primaryColor),
+                  ),
                 ),
               ),
             ),
