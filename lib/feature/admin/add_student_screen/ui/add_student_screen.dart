@@ -67,6 +67,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
             CustomTextFormField(
               controller: _nameController,
               hintText: "Student Name",
+              
               fillColor: primaryColor,
               keyBoardType: TextInputType.text,
             ),

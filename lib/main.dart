@@ -6,6 +6,7 @@ import 'package:coursestudy/util/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'feature/admin/student_list/bloc/student_list.bloc.dart';
 import 'feature/user/user_screen/user_screen.dart';
 
 Future<void> main() async {
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => AdminHomePageBloc(),
         ),
+        BlocProvider(create: (context) => StudentListBloc()),
       ],
       child: Container(
         constraints: BoxConstraints(

@@ -1,9 +1,14 @@
 import 'package:coursestudy/feature/admin/course_list_screen/ui/screen/course_list_screen.dart';
+import 'package:coursestudy/feature/admin/student_list/bloc/student_list_event.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../util/theme.dart';
+import '../bloc/student_list.bloc.dart';
+import '../bloc/student_list_state.dart';
+import '../model/student_list_model.dart';
 
 final List<UserData> userList = [
   UserData(
@@ -35,24 +40,47 @@ final List<UserData> userList = [
       dateOfBirth: '2000-09-09')
 ];
 
-class StudentListScreen extends StatelessWidget {
+class StudentListScreen extends StatefulWidget {
   const StudentListScreen({super.key});
+
+  @override
+  State<StudentListScreen> createState() => _StudentListScreenState();
+}
+
+class _StudentListScreenState extends State<StudentListScreen> {
+  @override
+  void initState() {
+    context.read<StudentListBloc>().add(FetchStudentListEvent());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: PaginatedDataTable(
-        arrowHeadColor: secondaryColor,
-        header: Text(
-          'Student List',
-          style: Theme.of(context)
-              .textTheme
-              .bodyLarge!
-              .copyWith(color: secondaryColor, fontSize: 32),
-        ),
-        columns: _createColumns(),
-        source: StudyCourseDataSou(),
-        rowsPerPage: 10,
+      child: BlocBuilder<StudentListBloc, StudentListState>(
+        builder: (context, state) {
+          if (state is LoadingStudentListState) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is ErrorStudentListState) {
+            return const Center(child: Text("Error found Student List"));
+          } else if (state is SuccessStudentListState) {
+            return PaginatedDataTable(
+              arrowHeadColor: secondaryColor,
+              header: Text(
+                'Student List',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge!
+                    .copyWith(color: secondaryColor, fontSize: 32),
+              ),
+              columns: _createColumns(),
+              source: StudyCourseDataSou(),
+              rowsPerPage: 10,
+            );
+          } else {
+            return Container();
+          }
+        },
       ),
     );
   }
@@ -143,21 +171,25 @@ List<DataRow> _createRows() {
 }
 
 class StudyCourseDataSou extends DataTableSource {
+  final List<StudentListModel>? studentListModel;
+
+  StudyCourseDataSou({this.studentListModel});
+
   @override
   DataRow? getRow(int index) {
-    if (index >= userList.length) {
+    if (index >= studentListModel!.length) {
       return null;
     }
-    final userData = userList[index];
+    final userData = studentListModel![index];
     return DataRow.byIndex(
       index: index,
       cells: [
         DataCell(Text(userData.id.toString())),
-        DataCell(Text(userData.name)),
-        DataCell(Text(userData.courseName)),
-        DataCell(Text(userData.dateOfBirth)),
-        DataCell(Text(userData.startedDate)),
-        DataCell(Text(userData.completedDate)),
+        DataCell(Text(userData.name!)),
+        DataCell(Text(userData.course.toString())),
+        DataCell(Text(userData.dOB.toString())),
+        DataCell(Text(userData.joinedDate.toString())),
+        DataCell(Text(userData.completedDate.toString())),
         DataCell(Row(
           children: [
             IconButton(
