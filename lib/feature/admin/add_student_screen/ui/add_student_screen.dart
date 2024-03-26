@@ -1,12 +1,16 @@
 import 'dart:developer';
 
+import 'package:coursestudy/feature/admin/add_student_screen/bloc/add_student_event.dart';
 import 'package:coursestudy/util/custom_date_picker.dart';
 import 'package:coursestudy/util/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../util/custom_text_form_field.dart';
 import '../../Auth/admin_signup.dart';
+import '../bloc/add_student_bloc.dart';
+import '../bloc/add_student_state.dart';
 
 class AddStudentScreen extends StatefulWidget {
   const AddStudentScreen({super.key});
@@ -67,7 +71,6 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
             CustomTextFormField(
               controller: _nameController,
               hintText: "Student Name",
-              
               fillColor: primaryColor,
               keyBoardType: TextInputType.text,
             ),
@@ -148,30 +151,50 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
             const SizedBox(
               height: 20,
             ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: ElevatedButton(
-                onPressed: () {
-                  // Navigator.of(context).pushAndRemoveUntil(
-                  //     MaterialPageRoute(
-                  //         builder: (context) =>
-                  //             const AdminHomePage()),
-                  //     (route) => false);
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: secondaryColor,
-                  minimumSize:
-                      Size(MediaQuery.of(context).size.width * 0.07, 44),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4),
+            BlocListener<AddStudentBloc, AddStudentState>(
+              listener: (context, state) {
+                switch (state.runtimeType) {
+                  case ErrorAddStudentState:
+                    log('error state');
+                  case LoadingAddStudentState:
+                    const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                    log('loading state');
+                  case SuccessAddStudentState:
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text('snack'),
+                      duration: Duration(seconds: 2),
+                    ));
+                }
+              },
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: ElevatedButton(
+                  onPressed: () {
+                    context.read<AddStudentBloc>().add(FetchAddStudentEvent(
+                          _courseController.text,
+                          _completedDateController.text,
+                          _dateOfBirthController.text,
+                          _StartedDateController.text,
+                          _nameController.text,
+                        ));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: secondaryColor,
+                    minimumSize:
+                        Size(MediaQuery.of(context).size.width * 0.07, 44),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
                   ),
-                ),
-                child: Text(
-                  "Submit",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyLarge!
-                      .copyWith(color: primaryColor),
+                  child: Text(
+                    "Submit",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyLarge!
+                        .copyWith(color: primaryColor),
+                  ),
                 ),
               ),
             ),
