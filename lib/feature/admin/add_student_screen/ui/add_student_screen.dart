@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../util/custom_text_form_field.dart';
 
-import '../../course_list_screen/course_list_bloc/course_list_bloc.dart';
+import '../../course_list_screen/bloc/course_list_bloc/course_list_bloc.dart';
 import '../../course_list_screen/model/course_model.dart';
 import '../bloc/add_student_bloc.dart';
 import '../bloc/add_student_state.dart';
