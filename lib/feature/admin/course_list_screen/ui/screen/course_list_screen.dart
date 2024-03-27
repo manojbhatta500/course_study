@@ -1,4 +1,4 @@
-import 'package:coursestudy/feature/admin/course_list_screen/course_list_bloc/course_list_bloc.dart';
+import 'package:coursestudy/feature/admin/course_list_screen/bloc/course_list_bloc/course_list_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
