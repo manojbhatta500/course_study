@@ -8,8 +8,13 @@ import '../widget/table_widget.dart';
 
 final List<CourseModel> courseList = [];
 
+
+
+
 class TableWithHeadings extends StatelessWidget {
   const TableWithHeadings({super.key});
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +24,11 @@ class TableWithHeadings extends StatelessWidget {
         builder: (context, state) {
           switch (state) {
             case CourseListLoadingState():
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             case CourseListFailedState():
-              return Center(
+              return const Center(
                 child: Text("Error"),
               );
             case CourseListSuccessState():
@@ -40,7 +45,7 @@ class TableWithHeadings extends StatelessWidget {
                 rowsPerPage: 10,
               );
             default:
-              return Text('Hello');
+              return const Text('Hello');
           }
         },
       ),
@@ -93,7 +98,9 @@ class StudyCourseDataSource extends DataTableSource {
         DataCell(Row(
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+               _showDialog(context);
+              },
               icon: const Icon(
                 Icons.update,
                 color: Colors.green,
@@ -128,4 +135,29 @@ class StudyCourseDataSource extends DataTableSource {
   @override
   // TODO: implement selectedRowCount
   int get selectedRowCount => 0;
+}
+
+
+
+// Update ****************************
+void _showDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text("Dialog Title"),
+        content: Text("This is the content of the dialog."),
+        actions: <Widget>[
+          // Close the dialog
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text("Close"),
+          ),
+          // Add additional buttons here if needed
+        ],
+      );
+    },
+  );
 }
