@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:coursestudy/util/apis.dart';
 import 'package:http/http.dart';
@@ -8,7 +9,7 @@ import '../../../../util/http_manager.dart';
 class CourseUpdateRepository {
   HttpManager manager = HttpManager(client: Client());
 
-  Future<Response> updateCourse(
+  Future<bool> updateCourse(
       String id, String course, String description) async {
     Response response = await manager.hitApi(
       requestType: RequestEnum.patch,
@@ -21,13 +22,21 @@ class CourseUpdateRepository {
 
     try {
       if (response.statusCode == 201 || response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        return data;
+        log('this is respo checker 200');
+
+        log('this is respo checker');
+        log(response.body);
+
+        return true;
       } else {
-        throw Exception(" this is repo else");
+        log('this is respo checker  not 200');
+
+        log('this is respo checker');
+
+        return false;
       }
     } catch (e) {
-      throw Exception(" ${e.toString()}   ***   this is repo catch");
+      throw Exception(" this is catch exceptions ***   this is repo catch");
     }
   }
 }
