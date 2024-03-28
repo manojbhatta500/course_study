@@ -8,13 +8,8 @@ import '../widget/table_widget.dart';
 
 final List<CourseModel> courseList = [];
 
-
-
-
 class TableWithHeadings extends StatelessWidget {
   const TableWithHeadings({super.key});
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +36,7 @@ class TableWithHeadings extends StatelessWidget {
                       .copyWith(color: secondaryColor, fontSize: 32),
                 ),
                 columns: _createColumns(),
-                source: StudyCourseDataSource(state.courseList),
+                source: StudyCourseDataSource(state.courseList, context),
                 rowsPerPage: 10,
               );
             default:
@@ -81,8 +76,9 @@ List<DataColumn> _createColumns() {
 
 class StudyCourseDataSource extends DataTableSource {
   List<CourseModel>? courseModel;
+  final BuildContext context;
 
-  StudyCourseDataSource(this.courseModel);
+  StudyCourseDataSource(this.courseModel, this.context);
 
   @override
   DataRow? getRow(int index) {
@@ -99,7 +95,7 @@ class StudyCourseDataSource extends DataTableSource {
           children: [
             IconButton(
               onPressed: () {
-               _showDialog(context);
+                _showDialog(context);
               },
               icon: const Icon(
                 Icons.update,
@@ -136,8 +132,6 @@ class StudyCourseDataSource extends DataTableSource {
   // TODO: implement selectedRowCount
   int get selectedRowCount => 0;
 }
-
-
 
 // Update ****************************
 void _showDialog(BuildContext context) {
