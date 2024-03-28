@@ -151,7 +151,15 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
             const SizedBox(
               height: 20,
             ),
-            CustomTextFormField(
+            CustomDatePicker(
+              dateController: _dateOfBirthController,
+              hintText: "Select Date of Birth",
+              onDateSelected: (value) {
+                _dateOfBirthController.text =
+                    "${value.year.toString()}-${value.month.toString().padLeft(2, '0')}-${value.day.toString().padLeft(2, '0')}";
+              },
+            ),
+            /*CustomTextFormField(
               controller: _dateOfBirthController,
               hintText: "Date Of Birth",
               fillColor: primaryColor,
@@ -162,11 +170,20 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                       "${value.year.toString()}-${value.month.toString().padLeft(2, '0')}-${value.day.toString().padLeft(2, '0')}";
                 },
               ),
-            ),
+            ),*/
             const SizedBox(
               height: 20,
             ),
-            CustomTextFormField(
+            CustomDatePicker(
+              dateController: _StartedDateController,
+              hintText: "Select Start Date",
+              onDateSelected: (value) {
+                _StartedDateController.text =
+                    "${value.year.toString()}-${value.month.toString().padLeft(2, '0')}-${value.day.toString().padLeft(2, '0')}";
+              },
+            ),
+
+            /*CustomTextFormField(
               controller: _StartedDateController,
               hintText: "started Date",
               fillColor: primaryColor,
@@ -177,11 +194,20 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                       "${value.year.toString()}-${value.month.toString().padLeft(2, '0')}-${value.day.toString().padLeft(2, '0')}";
                 },
               ),
-            ),
+            ),*/
+
             const SizedBox(
               height: 20,
             ),
-            CustomTextFormField(
+            CustomDatePicker(
+              dateController: _completedDateController,
+              hintText: "Select Completed Date",
+              onDateSelected: (value) {
+                _completedDateController.text =
+                    "${value.year.toString()}-${value.month.toString().padLeft(2, '0')}-${value.day.toString().padLeft(2, '0')}";
+              },
+            ),
+            /*CustomTextFormField(
               controller: _completedDateController,
               hintText: "Completed Date",
               fillColor: primaryColor,
@@ -192,7 +218,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                       "${value.year.toString()}-${value.month.toString().padLeft(2, '0')}-${value.day.toString().padLeft(2, '0')}";
                 },
               ),
-            ),
+            ),*/
             const SizedBox(
               height: 20,
             ),
