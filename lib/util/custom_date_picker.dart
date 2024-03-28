@@ -1,11 +1,20 @@
+import 'package:coursestudy/util/theme.dart';
 import 'package:flutter/material.dart';
+
+import 'custom_text_form_field.dart';
 
 class CustomDatePicker extends StatefulWidget {
   final DateTime? initialDate;
   final Function(DateTime) onDateSelected;
+  final TextEditingController? dateController;
+  final String? hintText;
 
   const CustomDatePicker(
-      {Key? key, this.initialDate, required this.onDateSelected})
+      {Key? key,
+      this.initialDate,
+      required this.onDateSelected,
+      this.hintText,
+      this.dateController})
       : super(key: key);
 
   @override
@@ -22,17 +31,14 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   }
 
   Future<void> _selectDate(BuildContext context) async {
- 
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: _selectedDate,
       firstDate: DateTime(2015, 8),
       lastDate: DateTime(2101),
-      
     );
     if (picked != null && picked != _selectedDate) {
       setState(() {
-        
         _selectedDate = picked;
       });
       widget.onDateSelected(picked);
@@ -41,16 +47,14 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => _selectDate(context),
-      child: Container(
-        padding: const EdgeInsets.all(10.0),
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey),
-          borderRadius: BorderRadius.circular(5.0),
-        ),
-        child: const Icon(Icons.calendar_today),
-      ),
+    return CustomTextFormField(
+      controller: widget.dateController,
+      hintText: widget.hintText,
+      fillColor: primaryColor,
+      onTap: () {
+        _selectDate(context);
+      },
+      keyBoardType: TextInputType.text,
     );
   }
 }

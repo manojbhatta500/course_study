@@ -15,11 +15,13 @@ class CustomTextFormField extends StatelessWidget {
   final int? maxLines;
   final TextInputType? keyBoardType;
   final int? maxLength;
+  final Function? onTap;
 
   const CustomTextFormField({
     super.key,
     this.hintText,
     this.controller,
+    this.onTap,
     this.validator,
     this.keyboardType,
     this.obscure = false,
@@ -41,6 +43,7 @@ class CustomTextFormField extends StatelessWidget {
       keyboardType: keyboardType,
       controller: controller,
       readOnly: readOnly!,
+      onTap: onTap != null ? () => onTap!() : null,
       inputFormatters: [LengthLimitingTextInputFormatter(maxLength)],
       decoration: InputDecoration(
         prefix: prefixIcon,
