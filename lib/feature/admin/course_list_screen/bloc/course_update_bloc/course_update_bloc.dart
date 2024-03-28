@@ -10,7 +10,17 @@ class CourseUpdateBloc extends Bloc<CourseUpdateEvent, CourseUpdateState> {
       emit(LoadingCourseUpdateState());
 
       final courseUpdate = await courseUpdateRepository.updateCourse(
-          event.course, event.description, event.id);
+        event.course,
+        event.description,
+        event.id,
+      );
+
+      if (courseUpdate.statusCode == 201) {
+        emit(SuccessCourseUpdateState());
+      } else {
+        emit(ErrorCourseUpdateState());
+      }
+      
     });
   }
 }
