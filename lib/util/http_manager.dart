@@ -14,25 +14,16 @@ class HttpManager {
       'Content-Type': 'application/json',
     };
 
-    Map<String, String> headingWithToken = {
-      'Authorization': 'Bearer //tokenvariable',
-    };
-    Map<String, String> headingWithPatchToken = {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer //tokenvariable',
-    };
-
     switch (requestType) {
       case RequestEnum.get:
         return client.get(Uri.parse(apiUrl), headers: heading);
       case RequestEnum.post:
         return client.post(Uri.parse(apiUrl), headers: heading, body: prameter);
       case RequestEnum.delete:
-        return client.post(Uri.parse(apiUrl),
-            headers: headingWithToken, body: prameter);
+        return client.post(Uri.parse(apiUrl), headers: heading, body: prameter);
       case RequestEnum.patch:
         return client.patch(Uri.parse(apiUrl),
-            headers: headingWithPatchToken, body: prameter);
+            headers: heading, body: prameter);
       default:
         throw Exception('sorry the provided path is not right');
     }

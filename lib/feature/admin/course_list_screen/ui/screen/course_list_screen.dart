@@ -1,16 +1,28 @@
+import 'dart:developer';
+
 import 'package:coursestudy/feature/admin/course_list_screen/bloc/course_list_bloc/course_list_bloc.dart';
+import 'package:coursestudy/feature/admin/course_list_screen/ui/screen/course_update_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../util/custom_text_form_field.dart';
 import '../../../../../util/theme.dart';
 import '../../model/course_model.dart';
 import '../widget/table_widget.dart';
 
 final List<CourseModel> courseList = [];
 
-class TableWithHeadings extends StatelessWidget {
-  const TableWithHeadings({super.key});
 
+class TableWithHeadings extends StatefulWidget {
+  const TableWithHeadings({
+    super.key,
+  });
+
+  @override
+  State<TableWithHeadings> createState() => _TableWithHeadingsState();
+}
+
+class _TableWithHeadingsState extends State<TableWithHeadings> {
   @override
   Widget build(BuildContext context) {
     context.read<CourseListBloc>().add(FetchCourseListEvent());
@@ -95,7 +107,16 @@ class StudyCourseDataSource extends DataTableSource {
           children: [
             IconButton(
               onPressed: () {
-                _showDialog(context);
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return CourseUpdateScreen(
+                      courseName: userData.name,
+                      id: userData.id,
+                      description: userData.description,
+                    );
+                  },
+                );
               },
               icon: const Icon(
                 Icons.update,
@@ -134,24 +155,6 @@ class StudyCourseDataSource extends DataTableSource {
 }
 
 // Update ****************************
-void _showDialog(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text("Dialog Title"),
-        content: Text("This is the content of the dialog."),
-        actions: <Widget>[
-          // Close the dialog
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text("Close"),
-          ),
-          // Add additional buttons here if needed
-        ],
-      );
-    },
-  );
-}
+
+  
+

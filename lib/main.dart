@@ -1,4 +1,3 @@
-
 import 'package:coursestudy/feature/admin/add_course/bloc/course_add_bloc.dart';
 import 'package:coursestudy/feature/admin/add_student_screen/bloc/add_student_bloc.dart';
 
@@ -11,6 +10,7 @@ import 'package:coursestudy/util/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'feature/admin/course_list_screen/bloc/course_update_bloc/course_update_bloc.dart';
 import 'feature/admin/student_list/bloc/student_list.bloc.dart';
 import 'feature/user/user_screen/user_screen.dart';
 
@@ -35,13 +35,10 @@ class MyApp extends StatelessWidget {
           create: (context) => AdminHomePageBloc(),
         ),
         BlocProvider(create: (context) => StudentListBloc()),
-
         BlocProvider(create: (context) => CourseAddBloc()),
-
         BlocProvider(create: (context) => AddStudentBloc()),
-
+        BlocProvider(create: (context) => CourseUpdateBloc()),
         BlocProvider(create: (context) => CourseListBloc()),
-
       ],
       child: Container(
         constraints: BoxConstraints(

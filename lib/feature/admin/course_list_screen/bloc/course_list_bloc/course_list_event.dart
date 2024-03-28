@@ -8,3 +8,5 @@ sealed class CourseListEvent extends Equatable {
 }
 
 final class FetchCourseListEvent extends CourseListEvent {}
+
+final class ResetCourseListEvent extends CourseListEvent {}
