@@ -130,19 +130,20 @@ class _CourseUpdateScreenState extends State<CourseUpdateScreen> {
                             context
                                 .read<CourseListBloc>()
                                 .add(FetchCourseListEvent());
-                            Navigator.pop(context);
+                          // Navigator.pop(context);
 
                           default:
                             log('this is deault statement in bloc listener');
                         }
                         return ElevatedButton(
-                          onPressed: ()  {
+                          onPressed: () {
                             BlocProvider.of<CourseUpdateBloc>(context)
                                 .add(FetchCourseUpdateEvent(
                               widget.id!,
                               courseController.text,
                               descriptionController.text,
                             ));
+                            Navigator.pop(context);
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: secondaryColor,
