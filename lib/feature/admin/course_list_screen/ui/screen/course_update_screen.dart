@@ -127,10 +127,13 @@ class _CourseUpdateScreenState extends State<CourseUpdateScreen> {
 
                           case SuccessCourseUpdateState:
                             log('this is success state');
-                            context
-                                .read<CourseListBloc>()
+                            // context
+                            //     .read<CourseListBloc>()
+                            //     .add(FetchCourseListEvent());
+                            // Navigator.pop(context);
+
+                            BlocProvider.of<CourseListBloc>(context)
                                 .add(FetchCourseListEvent());
-                          // Navigator.pop(context);
 
                           default:
                             log('this is deault statement in bloc listener');
