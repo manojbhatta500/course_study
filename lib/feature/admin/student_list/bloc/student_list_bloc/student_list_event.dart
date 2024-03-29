@@ -7,7 +7,5 @@ sealed class StudentListEvent extends Equatable{
 }
 
 class FetchStudentListEvent extends StudentListEvent{
-  @override
 
-  List<Object?> get props => [];
 }

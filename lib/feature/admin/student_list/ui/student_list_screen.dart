@@ -1,14 +1,16 @@
 import 'package:coursestudy/feature/admin/course_list_screen/ui/screen/course_list_screen.dart';
-import 'package:coursestudy/feature/admin/student_list/bloc/student_list_event.dart';
+import 'package:coursestudy/feature/admin/student_list/bloc/student_list_bloc/student_list_event.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../util/theme.dart';
-import '../bloc/student_list.bloc.dart';
-import '../bloc/student_list_state.dart';
+import '../bloc/student_list_bloc/student_list.bloc.dart';
+import '../bloc/student_list_bloc/student_list_state.dart';
 import '../model/student_list_model.dart';
+import 'update_student_widget.dart';
 
 class StudentListScreen extends StatefulWidget {
   const StudentListScreen({super.key});
@@ -44,12 +46,12 @@ class _StudentListScreenState extends State<StudentListScreen> {
                     .copyWith(color: secondaryColor, fontSize: 32),
               ),
               columns: _createColumns(),
-              source:
-                  StudyCourseDataSou(studentListModel: state.studentListModel),
+              source: StudyCourseDataSou(
+                  studentListModel: state.studentListModel, context: context),
               rowsPerPage: 10,
             );
           } else {
-            return Text("error");
+            return const Text("error");
           }
         },
       ),
@@ -73,8 +75,9 @@ List<DataColumn> _createColumns() {
 
 class StudyCourseDataSou extends DataTableSource {
   final List<StudentListModel>? studentListModel;
+  final BuildContext context;
 
-  StudyCourseDataSou({this.studentListModel});
+  StudyCourseDataSou({this.studentListModel, required this.context});
 
   @override
   DataRow? getRow(int index) {
@@ -82,19 +85,40 @@ class StudyCourseDataSou extends DataTableSource {
       return null;
     }
     final userData = studentListModel![index];
+
     return DataRow.byIndex(
       index: index,
       cells: [
         DataCell(Text(userData.id.toString())),
-        DataCell(Text(userData.name!)),
+        DataCell(Text(userData.name.toString())),
         DataCell(Text(userData.course.toString())),
-        DataCell(Text(userData.dOB.toString())),
-        DataCell(Text(userData.joinedDate.toString())),
-        DataCell(Text(userData.completedDate.toString())),
+        DataCell(Text(
+            DateFormat('yyyy-MM-dd').format(DateTime.parse(userData.dOB!)))),
+        DataCell(Text(DateFormat('yyyy-MM-dd')
+            .format(DateTime.parse(userData.joinedDate!)))),
+        DataCell(Text(DateFormat('yyyy-MM-dd')
+            .format(DateTime.parse(userData.completedDate!)))),
         DataCell(Row(
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return UpdateStudentWidget(
+                      id: userData.id,
+                      name: userData.name,
+                      course: userData.course,
+                      completeDate: DateFormat('yyyy-MM-dd')
+                          .format(DateTime.parse(userData.completedDate!)),
+                      dateofBirth: DateFormat('yyyy-MM-dd')
+                          .format(DateTime.parse(userData.dOB!)),
+                      joinDate: DateFormat('yyyy-MM-dd')
+                          .format(DateTime.parse(userData.joinedDate!)),
+                    );
+                  },
+                );
+              },
               icon: const Icon(
                 Icons.update,
                 color: Colors.green,
