@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:coursestudy/feature/admin/student_list/bloc/student_list_event.dart';
-import 'package:coursestudy/feature/admin/student_list/bloc/student_list_state.dart';
+import 'package:coursestudy/feature/admin/student_list/bloc/student_list_bloc/student_list_event.dart';
+import 'package:coursestudy/feature/admin/student_list/bloc/student_list_bloc/student_list_state.dart';
 import 'package:coursestudy/feature/admin/student_list/model/student_list_model.dart';
 import 'package:coursestudy/feature/admin/student_list/repository/student_list_repository.dart';
 
