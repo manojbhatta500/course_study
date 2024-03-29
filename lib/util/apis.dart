@@ -5,4 +5,5 @@ class Apis {
 
   static String postCourseApi = '$baseApi/course';
   static String updateCourseApi = "$baseApi/course";
+  static String deleteCourseApi = "$baseApi/course";
 }

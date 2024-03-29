@@ -20,7 +20,8 @@ class HttpManager {
       case RequestEnum.post:
         return client.post(Uri.parse(apiUrl), headers: heading, body: prameter);
       case RequestEnum.delete:
-        return client.post(Uri.parse(apiUrl), headers: heading, body: prameter);
+        return client.delete(Uri.parse(apiUrl),
+            headers: heading, body: prameter);
       case RequestEnum.patch:
         return client.patch(Uri.parse(apiUrl),
             headers: heading, body: prameter);
