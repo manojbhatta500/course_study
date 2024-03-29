@@ -12,6 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'feature/admin/course_list_screen/bloc/course_update_bloc/course_update_bloc.dart';
 import 'feature/admin/course_list_screen/bloc/delete_course_bloc/delete_course_bloc.dart';
+import 'feature/admin/student_list/bloc/delete_student_bloc/delete_student_bloc.dart';
 import 'feature/admin/student_list/bloc/student_list_bloc/student_list.bloc.dart';
 import 'feature/admin/student_list/bloc/update_student_bloc/update_student_bloc.dart';
 import 'feature/user/user_screen/user_screen.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => CourseListBloc()),
         BlocProvider(create: (context) => DeleteCourseBloc()),
         BlocProvider(create: (context) => UpdatetudentBloc()),
+        BlocProvider(create: (context) => DeleteStudentBloc()),
       ],
       child: Container(
         constraints: BoxConstraints(
