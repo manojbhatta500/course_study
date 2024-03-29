@@ -8,10 +8,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../util/custom_text_form_field.dart';
 import '../../../../../util/theme.dart';
 import '../../model/course_model.dart';
+import '../widget/delete_course_widget.dart';
 import '../widget/table_widget.dart';
 
 final List<CourseModel> courseList = [];
-
 
 class TableWithHeadings extends StatefulWidget {
   const TableWithHeadings({
@@ -128,7 +128,16 @@ class StudyCourseDataSource extends DataTableSource {
               width: 5,
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return DeleteCourseWidget(
+                      id: userData.id,
+                    );
+                  },
+                );
+              },
               icon: const Icon(
                 Icons.delete,
                 color: Colors.red,
