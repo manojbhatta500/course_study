@@ -104,10 +104,13 @@ class _DeleteCourseWidgetState extends State<DeleteCourseWidget> {
 
                         case SuccessDeleteCourseState:
                           log('this is success state');
-                          context
-                              .read<CourseListBloc>()
+                          // context
+                          //     .read<CourseListBloc>()
+                          //     .add(FetchCourseListEvent());
+                          // Navigator.pop(context);
+
+                          BlocProvider.of<CourseListBloc>(context)
                               .add(FetchCourseListEvent());
-                        // Navigator.pop(context);
 
                         default:
                           log('this is deault statement in bloc listener');
