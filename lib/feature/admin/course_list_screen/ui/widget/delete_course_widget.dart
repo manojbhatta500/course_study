@@ -50,7 +50,7 @@ class _DeleteCourseWidgetState extends State<DeleteCourseWidget> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "Are You Sure!",
+              "Are You Sure want to delete?",
               style: Theme.of(context)
                   .textTheme
                   .bodyLarge!
@@ -96,6 +96,7 @@ class _DeleteCourseWidgetState extends State<DeleteCourseWidget> {
                           );
 
                         case ErrorDeleteCourseState:
+                          log("this is ui delete student error");
                         // ScaffoldMessenger.of(context).showSnackBar(
                         //     const SnackBar(
                         //         backgroundColor: Colors.red,

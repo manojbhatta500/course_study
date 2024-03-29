@@ -11,6 +11,7 @@ import '../../course_list_screen/ui/widget/delete_course_widget.dart';
 import '../bloc/student_list_bloc/student_list.bloc.dart';
 import '../bloc/student_list_bloc/student_list_state.dart';
 import '../model/student_list_model.dart';
+import 'delete_student_widget.dart';
 import 'update_student_widget.dart';
 
 class StudentListScreen extends StatefulWidget {
@@ -134,7 +135,7 @@ class StudyCourseDataSou extends DataTableSource {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
-                    return DeleteCourseWidget(
+                    return DeleteStudentWidget(
                       id: userData.id,
                     );
                   },

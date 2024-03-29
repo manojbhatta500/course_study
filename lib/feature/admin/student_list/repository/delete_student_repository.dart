@@ -19,16 +19,12 @@ class DeleteStudentRepository {
 
     try {
       if (response.statusCode == 201 || response.statusCode == 200) {
-        log('this is respo checker 200');
-
-        log('this is respo checker');
+        
         log(response.body);
 
         return true;
       } else {
-        log('this is delete student else');
-
-        log('this is respo checker');
+       
 
         return false;
       }
