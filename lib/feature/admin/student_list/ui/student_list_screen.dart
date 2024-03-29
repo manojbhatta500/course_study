@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../util/theme.dart';
+import '../../course_list_screen/ui/widget/delete_course_widget.dart';
 import '../bloc/student_list_bloc/student_list.bloc.dart';
 import '../bloc/student_list_bloc/student_list_state.dart';
 import '../model/student_list_model.dart';
@@ -129,7 +130,16 @@ class StudyCourseDataSou extends DataTableSource {
               width: 5,
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return DeleteCourseWidget(
+                      id: userData.id,
+                    );
+                  },
+                );
+              },
               icon: const Icon(
                 Icons.delete,
                 color: Colors.red,

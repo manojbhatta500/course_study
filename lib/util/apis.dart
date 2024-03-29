@@ -3,6 +3,7 @@ class Apis {
   static String getCourseListApi = "$baseApi/course";
   static String getStudentApi = "$baseApi/student";
   static String updateStudentApi = "$baseApi/student";
+  static String deleteStudentApi = "$baseApi/student";
 
   static String postCourseApi = '$baseApi/course';
   static String updateCourseApi = "$baseApi/course";
