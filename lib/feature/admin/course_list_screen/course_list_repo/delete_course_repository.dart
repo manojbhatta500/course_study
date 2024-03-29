@@ -18,11 +18,11 @@ class DeleteCourseRepository {
     );
 
     try {
+      log(response.statusCode.toString());
       if (response.statusCode == 201 || response.statusCode == 200) {
         log('this is respo checker 200');
 
         log('this is respo checker');
-        log(response.body);
 
         return true;
       } else {

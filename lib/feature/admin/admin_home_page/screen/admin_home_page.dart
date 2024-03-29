@@ -34,14 +34,12 @@ class AdminHomePage extends StatelessWidget {
           IconButton(onPressed: () {}, icon: const Icon(Icons.abc_outlined)),
         ],
       ),
-      body: SizedBox(
-        height: height,
-        width: width,
-        child: Row(
-          children: [
-            Container(
+      body: Row(
+        children: [
+          Expanded(
+            flex: 1,
+            child: Container(
               height: height,
-              width: 0.15 * width,
               decoration: BoxDecoration(
                   color: secondaryColor,
                   border: Border.all(color: Colors.white, width: 1)),
@@ -82,36 +80,36 @@ class AdminHomePage extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(
-              child: BlocBuilder<AdminHomePageBloc, AdminHomePageState>(
-                builder: (context, state) {
-                  switch (state.runtimeType) {
-                    case Page1:
-                      return const AddCourse();
+          ),
+          Expanded(
+            flex: 3,
+            child: BlocBuilder<AdminHomePageBloc, AdminHomePageState>(
+              builder: (context, state) {
+                switch (state.runtimeType) {
+                  case Page1:
+                    return const AddCourse();
 
-                    case Page2:
-                      return const TableWithHeadings();
+                  case Page2:
+                    return const TableWithHeadings();
 
-                    case Page3:
-                      return const AddStudentScreen();
+                  case Page3:
+                    return const AddStudentScreen();
 
-                    case Page4:
-                      return const StudentListScreen();
+                  case Page4:
+                    return const StudentListScreen();
 
-                    default:
-                      print('this is invalid');
-                      return const SizedBox();
-                  }
-                },
-              ),
-            )
-          ],
-        ),
+                  default:
+                    print('this is invalid');
+                    return const SizedBox();
+                }
+              },
+            ),
+          )
+        ],
       ),
     );
   }
 }
-
 
 //  return Container(
 //                     color: Colors.blue,
