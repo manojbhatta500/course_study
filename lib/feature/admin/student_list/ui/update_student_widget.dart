@@ -248,10 +248,13 @@ class _UpdateStudentWidgetState extends State<UpdateStudentWidget> {
 
                           case SuccessUpdateStudentState:
                             log('this is success state');
-                            context
-                                .read<StudentListBloc>()
+                            // context
+                            //     .read<StudentListBloc>()
+                            //     .add(FetchStudentListEvent());
+                            // Navigator.pop(context);
+
+                            BlocProvider.of<StudentListBloc>(context)
                                 .add(FetchStudentListEvent());
-                          // Navigator.pop(context);
 
                           default:
                             log('this is deault statement in bloc listener');
