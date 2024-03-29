@@ -1,9 +1,5 @@
 import 'dart:developer';
 
-import 'package:coursestudy/feature/admin/course_list_screen/bloc/course_list_bloc/course_list_bloc.dart';
-import 'package:coursestudy/feature/admin/course_list_screen/bloc/course_update_bloc/course_update_event.dart';
-import 'package:coursestudy/feature/admin/course_list_screen/bloc/course_update_bloc/course_update_state.dart';
-import 'package:coursestudy/feature/admin/course_list_screen/course_list_repo/course_update_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../course_list_repo/delete_course_repository.dart';

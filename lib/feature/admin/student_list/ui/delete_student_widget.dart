@@ -13,8 +13,6 @@ import '../bloc/delete_student_bloc/delete_student_state.dart';
 import '../bloc/student_list_bloc/student_list.bloc.dart';
 import '../bloc/student_list_bloc/student_list_event.dart';
 
-
-
 class DeleteStudentWidget extends StatefulWidget {
   const DeleteStudentWidget({
     super.key,
@@ -27,18 +25,6 @@ class DeleteStudentWidget extends StatefulWidget {
 }
 
 class _DeleteStudentWidgetState extends State<DeleteStudentWidget> {
-  final TextEditingController courseController = TextEditingController();
-  final TextEditingController descriptionController = TextEditingController();
-  final formKey = GlobalKey<FormState>();
-
-  // @override
-  // void initState() {
-  //   log('init of widget');
-  //   courseController.text = widget.courseName!;
-  //   descriptionController.text = widget.description!;
-  //   super.initState();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -112,7 +98,7 @@ class _DeleteStudentWidgetState extends State<DeleteStudentWidget> {
                         // Navigator.pop(context);
 
                         default:
-                          log('this is deault statement in bloc listener');
+                          log('this is deault statement in bloc builder');
                       }
                       return ElevatedButton(
                         onPressed: () {
