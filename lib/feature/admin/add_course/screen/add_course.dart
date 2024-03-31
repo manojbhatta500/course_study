@@ -7,7 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../util/custom_text_form_field.dart';
-import '../../Auth/admin_signup.dart';
+import '../../Auth/screens/admin_signup.dart';
 
 class AddCourse extends StatefulWidget {
   const AddCourse({super.key});

@@ -99,6 +99,7 @@ class _DeleteStudentWidgetState extends State<DeleteStudentWidget> {
 
                           BlocProvider.of<StudentListBloc>(context)
                               .add(FetchStudentListEvent());
+                        // Navigator.pop(context);
 
                         default:
                           log('this is deault statement in bloc builder');
@@ -109,6 +110,7 @@ class _DeleteStudentWidgetState extends State<DeleteStudentWidget> {
                               .add(FetchDeleteStudentEvent(
                             widget.id!,
                           ));
+
                           Navigator.pop(context);
                         },
                         style: ElevatedButton.styleFrom(

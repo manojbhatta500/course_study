@@ -1,9 +1,9 @@
-import 'package:coursestudy/feature/admin/Auth/admin_login.dart';
+import 'package:coursestudy/feature/admin/Auth/screens/admin_login.dart';
 import 'package:coursestudy/util/my_strings.dart';
 import 'package:flutter/material.dart';
 
-import '../../../util/custom_text_form_field.dart';
-import '../../../util/theme.dart';
+import '../../../../util/custom_text_form_field.dart';
+import '../../../../util/theme.dart';
 
 class AdminSignup extends StatefulWidget {
   const AdminSignup({super.key});

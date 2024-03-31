@@ -1,5 +1,5 @@
-import 'package:coursestudy/feature/admin/Auth/admin_login.dart';
-import 'package:coursestudy/feature/admin/Auth/admin_signup.dart';
+import 'package:coursestudy/feature/admin/Auth/screens/admin_login.dart';
+import 'package:coursestudy/feature/admin/Auth/screens/admin_signup.dart';
 import 'package:coursestudy/feature/admin/admin_home_page/bloc/admin_home_page_bloc.dart';
 import 'package:coursestudy/feature/admin/admin_home_page/screen/nav_button.dart';
 import 'package:coursestudy/feature/admin/post_form/screens/post_form.dart';

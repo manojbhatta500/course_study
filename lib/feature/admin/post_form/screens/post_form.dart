@@ -1,4 +1,4 @@
-import 'package:coursestudy/feature/admin/Auth/admin_login.dart';
+import 'package:coursestudy/feature/admin/Auth/screens/admin_login.dart';
 import 'package:coursestudy/util/my_strings.dart';
 import 'package:flutter/material.dart';
 
