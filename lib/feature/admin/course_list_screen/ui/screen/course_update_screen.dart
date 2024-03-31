@@ -16,6 +16,7 @@ import '../../bloc/course_update_bloc/course_update_state.dart';
 class CourseUpdateScreen extends StatefulWidget {
   const CourseUpdateScreen(
       {super.key, this.id, this.courseName, this.description});
+
   final String? id;
   final String? courseName;
   final String? description;
@@ -132,15 +133,17 @@ class _CourseUpdateScreenState extends State<CourseUpdateScreen> {
                             //     .add(FetchCourseListEvent());
                             // Navigator.pop(context);
 
-                            BlocProvider.of<CourseListBloc>(context)
-                                .add(FetchCourseListEvent());
+                            BlocProvider.of<CourseListBloc>(
+                              context,
+                            ).add(FetchCourseListEvent());
+
                           //Navigator.pop(context);
 
                           default:
                             log('this is deault statement in bloc listener');
                         }
                         return ElevatedButton(
-                          onPressed: () {
+                          onPressed: () async {
                             BlocProvider.of<CourseUpdateBloc>(context)
                                 .add(FetchCourseUpdateEvent(
                               widget.id!,
