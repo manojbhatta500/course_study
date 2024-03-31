@@ -15,11 +15,11 @@ class StudentListBloc extends Bloc<StudentListEvent, StudentListState> {
       List<StudentListModel> checkData =
           await studentListRepository.studentList();
 
-      if (checkData.runtimeType == List<StudentListModel>) {
-        log("this is bloc error state");
+      if (checkData.isNotEmpty) {
+        log("this is bloc success");
         emit(SuccessStudentListState(checkData));
       } else {
-        log("this is bloc success");
+        log("this is bloc error state");
         emit(ErrorStudentListState());
       }
     });

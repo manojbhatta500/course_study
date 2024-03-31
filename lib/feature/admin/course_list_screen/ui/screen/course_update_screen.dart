@@ -134,6 +134,7 @@ class _CourseUpdateScreenState extends State<CourseUpdateScreen> {
 
                             BlocProvider.of<CourseListBloc>(context)
                                 .add(FetchCourseListEvent());
+                          //Navigator.pop(context);
 
                           default:
                             log('this is deault statement in bloc listener');

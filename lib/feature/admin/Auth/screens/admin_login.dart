@@ -1,10 +1,10 @@
 import 'package:coursestudy/util/my_strings.dart';
 import 'package:flutter/material.dart';
 
-import '../../../util/custom_text_form_field.dart';
-import '../../../util/theme.dart';
-import '../admin_home_page/screen/admin_home_page.dart';
-import '../post_form/screens/post_form.dart';
+import '../../../../util/custom_text_form_field.dart';
+import '../../../../util/theme.dart';
+import '../../admin_home_page/screen/admin_home_page.dart';
+
 import 'admin_signup.dart';
 
 class AdminLogin extends StatefulWidget {

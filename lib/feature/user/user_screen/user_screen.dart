@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../../../util/custom_button.dart';
 import '../../../util/custom_text_form_field.dart';
-import '../../admin/Auth/admin_login.dart';
+import '../../admin/Auth/screens/admin_login.dart';
 
 class UserScreen extends StatefulWidget {
   const UserScreen({super.key});

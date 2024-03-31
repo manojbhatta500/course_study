@@ -93,7 +93,7 @@ class StudyCourseDataSou extends DataTableSource {
       cells: [
         DataCell(Text(userData.id.toString())),
         DataCell(Text(userData.name.toString())),
-        DataCell(Text(userData.course.toString())),
+        DataCell(Text(userData.course!.name!)),
         DataCell(Text(
             DateFormat('yyyy-MM-dd').format(DateTime.parse(userData.dOB!)))),
         DataCell(Text(DateFormat('yyyy-MM-dd')
@@ -110,7 +110,7 @@ class StudyCourseDataSou extends DataTableSource {
                     return UpdateStudentWidget(
                       id: userData.id,
                       name: userData.name,
-                      course: userData.course,
+                      course: userData.course!.name ?? "",
                       completeDate: DateFormat('yyyy-MM-dd')
                           .format(DateTime.parse(userData.completedDate!)),
                       dateofBirth: DateFormat('yyyy-MM-dd')

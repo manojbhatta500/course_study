@@ -264,7 +264,8 @@ class _UpdateStudentWidgetState extends State<UpdateStudentWidget> {
                             BlocProvider.of<UpdatetudentBloc>(context)
                                 .add(FetchUpdateStudentEvent(
                               widget.id!,
-                              _courseController.text,
+                              courseId!,
+                              // _courseController.text,
                               _nameController.text,
                               _dateOfBirthController.text,
                               _completedDateController.text,
