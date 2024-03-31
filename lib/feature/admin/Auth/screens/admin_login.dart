@@ -1,10 +1,16 @@
+import 'dart:developer';
+
+import 'package:coursestudy/feature/admin/Auth/bloc/login_bloc/login_event.dart';
 import 'package:coursestudy/util/my_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../util/custom_text_form_field.dart';
 import '../../../../util/theme.dart';
 import '../../admin_home_page/screen/admin_home_page.dart';
 
+import '../bloc/login_bloc/login_bloc.dart';
+import '../bloc/login_bloc/login_state.dart';
 import 'admin_signup.dart';
 
 class AdminLogin extends StatefulWidget {
@@ -105,28 +111,58 @@ class _AdminLoginState extends State<AdminLogin> {
                         const SizedBox(
                           height: 20,
                         ),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).pushAndRemoveUntil(
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const AdminHomePage()),
-                                (route) => false);
+                        BlocListener<LoginBloc, LoginState>(
+                          listener: (context, state) {
+                            switch (state.runtimeType) {
+                              case ErrorLoginState:
+                                log('error state');
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                  content: Text('Login Unsuccess'),
+                                  duration: Duration(seconds: 2),
+                                ));
+                              case LoadingLoginState:
+                                const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                                log('loading state');
+                              case SuccessLoginState:
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const AdminHomePage()),
+                                    (route) => false);
+
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                  content: Text('successfully Login'),
+                                  duration: Duration(seconds: 2),
+                                ));
+                            }
                           },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: primaryColor,
-                            minimumSize:
-                                Size(MediaQuery.of(context).size.width, 44),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              context.read<LoginBloc>().add(FetchLoginEvent(
+                                    _emailController.text,
+                                    _passwordController.text,
+                                  ));
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: primaryColor,
+                              minimumSize:
+                                  Size(MediaQuery.of(context).size.width, 44),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4),
+                              ),
                             ),
-                          ),
-                          child: Text(
-                            "Login",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge!
-                                .copyWith(color: secondaryColor),
+                            child: Text(
+                              "Login",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge!
+                                  .copyWith(color: secondaryColor),
+                            ),
                           ),
                         ),
                       ],

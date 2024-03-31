@@ -1,9 +1,15 @@
+import 'dart:developer';
+
+import 'package:coursestudy/feature/admin/Auth/bloc/signUp_bloc/signup_event.dart';
 import 'package:coursestudy/feature/admin/Auth/screens/admin_login.dart';
 import 'package:coursestudy/util/my_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../util/custom_text_form_field.dart';
 import '../../../../util/theme.dart';
+import '../bloc/signUp_bloc/signup_bloc.dart';
+import '../bloc/signUp_bloc/signup_state.dart';
 
 class AdminSignup extends StatefulWidget {
   const AdminSignup({super.key});
@@ -15,14 +21,14 @@ class AdminSignup extends StatefulWidget {
 class _AdminSignupState extends State<AdminSignup> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _fullNameController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
-    _nameController.dispose();
+    _fullNameController.dispose();
 
     super.dispose();
   }
@@ -60,7 +66,7 @@ class _AdminSignupState extends State<AdminSignup> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         CustomTextFormField(
-                          controller: _nameController,
+                          controller: _fullNameController,
                           hintText: "Name",
                           fillColor: primaryColor,
                           keyBoardType: TextInputType.text,
@@ -114,22 +120,51 @@ class _AdminSignupState extends State<AdminSignup> {
                         const SizedBox(
                           height: 20,
                         ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: primaryColor,
-                            minimumSize:
-                                Size(MediaQuery.of(context).size.width, 44),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4),
+                        BlocListener<SignUpBloc, SignUpState>(
+                          listener: (context, state) {
+                            switch (state.runtimeType) {
+                              case ErrorSignUpState:
+                                log('error state');
+                              case LoadingSignUpState:
+                                const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                                log('loading state');
+                              case SuccessSignUpState:
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => AdminLogin()));
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                  content: Text('successfully SignUp'),
+                                  duration: Duration(seconds: 2),
+                                ));
+                            }
+                          },
+                          child: ElevatedButton(
+                            onPressed: () {
+                              context.read<SignUpBloc>().add(FetchSignUpEvent(
+                                    _emailController.text,
+                                    _passwordController.text,
+                                    _fullNameController.text,
+                                  ));
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: primaryColor,
+                              minimumSize:
+                                  Size(MediaQuery.of(context).size.width, 44),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4),
+                              ),
                             ),
-                          ),
-                          child: Text(
-                            "Sign Up",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge!
-                                .copyWith(color: secondaryColor),
+                            child: Text(
+                              "Sign Up",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge!
+                                  .copyWith(color: secondaryColor),
+                            ),
                           ),
                         ),
                       ],
