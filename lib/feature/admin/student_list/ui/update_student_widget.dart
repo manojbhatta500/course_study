@@ -26,6 +26,7 @@ class UpdateStudentWidget extends StatefulWidget {
       this.joinDate,
       this.dateofBirth,
       this.completeDate});
+
   final String? id;
   final String? course;
   final String? name;
@@ -140,7 +141,7 @@ class _UpdateStudentWidgetState extends State<UpdateStudentWidget> {
                       onChanged: (newValue) {
                         setState(() {
                           _courseModel = newValue!;
-                          courseId = _courseModel!.id;
+                          courseId = newValue.id;
 
                           // state.submeterlist[0] = newValue!;
                           //dropdownValue = newValue!;
@@ -263,13 +264,13 @@ class _UpdateStudentWidgetState extends State<UpdateStudentWidget> {
                           onPressed: () {
                             BlocProvider.of<UpdatetudentBloc>(context)
                                 .add(FetchUpdateStudentEvent(
-                              widget.id!,
                               courseId!,
+                              widget.id!,
                               // _courseController.text,
-                              _nameController.text,
-                              _dateOfBirthController.text,
                               _completedDateController.text,
+                              _dateOfBirthController.text,
                               _startedDateController.text,
+                              _nameController.text,
                             ));
                             Navigator.pop(context);
                           },
