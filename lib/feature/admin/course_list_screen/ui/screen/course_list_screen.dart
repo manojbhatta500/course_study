@@ -164,6 +164,3 @@ class StudyCourseDataSource extends DataTableSource {
 }
 
 // Update ****************************
-
-  
-

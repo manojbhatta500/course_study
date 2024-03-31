@@ -8,7 +8,7 @@ import '../model/user_model.dart';
 class UserRepository {
   UserModel userModel = UserModel();
 
-  Future<dynamic> userPost(String id) async {
+  Future<UserModel> userPost(String id) async {
     final response = await http.get(
       Uri.parse("http://192.168.1.81:3000/api/v1/student/$id"),
       // Uri.parse(
@@ -18,7 +18,6 @@ class UserRepository {
       log(response.statusCode.toString());
       if (response.statusCode == 200) {
         final data = UserModel.fromJson(jsonDecode(response.body));
-
         //final data = jsonDecode(response.body);
 
         userModel = data;
