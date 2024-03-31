@@ -121,7 +121,8 @@ class _DeleteCourseWidgetState extends State<DeleteCourseWidget> {
                               .add(FetchDeleteCourseEvent(
                             widget.id!,
                           ));
-                          Navigator.pop(context);
+                          Navigator.pop(
+                              context,);
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: secondaryColor,

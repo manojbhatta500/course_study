@@ -8,4 +8,6 @@ class Apis {
   static String postCourseApi = '$baseApi/course';
   static String updateCourseApi = "$baseApi/course";
   static String deleteCourseApi = "$baseApi/course";
+  static String signUpApi = "$baseApi/user/create";
+  static String loginApi = "$baseApi/user/login";
 }

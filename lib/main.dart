@@ -10,6 +10,8 @@ import 'package:coursestudy/util/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'feature/admin/Auth/bloc/login_bloc/login_bloc.dart';
+import 'feature/admin/Auth/bloc/signUp_bloc/signup_bloc.dart';
 import 'feature/admin/course_list_screen/bloc/course_update_bloc/course_update_bloc.dart';
 import 'feature/admin/course_list_screen/bloc/delete_course_bloc/delete_course_bloc.dart';
 import 'feature/admin/student_list/bloc/delete_student_bloc/delete_student_bloc.dart';
@@ -45,6 +47,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => DeleteCourseBloc()),
         BlocProvider(create: (context) => UpdatetudentBloc()),
         BlocProvider(create: (context) => DeleteStudentBloc()),
+        BlocProvider(create: (context) => SignUpBloc()),
+        BlocProvider(create: (context) => LoginBloc()),
       ],
       child: Container(
         constraints: BoxConstraints(
